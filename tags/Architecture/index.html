@@ -29,8 +29,147 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Gavin&#039;s Home</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">Architecture</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-13T01:03:42.000Z" title="2024/10/13 09:03:42">2024-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-coin/">Carry-coin</a></span><span class="level-item">2 minutes read (About 361 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/13/carry_coin_architecture_1/">Carry-Coin 一个自动化搬砖套利平台</a></p><div class="content"><p>Carry-Coin 是一个套利程序，套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Gavin&#039;s Home</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">Architecture</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-15T09:03:42.000Z" title="2024/10/15 17:03:42">2024-10-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-15T14:47:33.000Z" title="2024/10/15 22:47:33">2024-10-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">a few seconds read (About 71 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/15/carry_coin_architecture_3/">Carry-Coin 架构设计 Core模块(2)</a></p><div class="content"><h2 id="Action-组成部分"><a href="#Action-组成部分" class="headerlink" title="Action 组成部分"></a>Action 组成部分</h2><img src="/2024/10/15/carry_coin_architecture_3/any-pipeline.png" class="">
+
+<ul>
+<li>AbstractForwardPipeline<ul>
+<li>正向套利(cex-&gt;dex)流水线抽象类</li>
+</ul>
+</li>
+<li>AbstractReversePipeline<ul>
+<li>逆向套利(dex-&gt;cex)流水线抽象类</li>
+</ul>
+</li>
+<li>CommonCutOffForwardPipeline</li>
+<li>CommonLimitWaitForwardPipeline</li>
+<li>CommonReversePipeline</li>
+<li>DebugReversePipeline</li>
+<li>DepositAndSellPipeline</li>
+<li>OnlySwapInChainPipeline</li>
+<li>SolanaReversePipeline</li>
+<li>TransactionRecordFactory</li>
+<li>WithdrawAndSellPipeline</li>
+</ul>
+<h2 id="Job-组成部分"><a href="#Job-组成部分" class="headerlink" title="Job 组成部分"></a>Job 组成部分</h2><blockquote>
+<p>异步任务</p>
+</blockquote>
+<ul>
+<li>BalanceRest200msJob</li>
+<li>ChainAccountMonitor10mJob</li>
+<li>CleanBalance1mJob</li>
+<li>ConsumerMiddleCoinBuyAndSellJob</li>
+<li>FundingRecordRest200msJob</li>
+<li>LoaderDataContextMonitor1sJob</li>
+<li>PendingPlaceOrderJob</li>
+<li>ResetSymbolConfigJob</li>
+<li>RiseMonitorRest10sJob</li>
+<li>SelfOrderRest100msJob</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-14T06:53:42.000Z" title="2024/10/14 14:53:42">2024-10-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-14T08:12:58.000Z" title="2024/10/14 16:12:58">2024-10-14</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">6 minutes read (About 847 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/14/carry_coin_architecture_2/">Carry-Coin 架构设计 Core模块(1)</a></p><div class="content"><h2 id="Core组成部分"><a href="#Core组成部分" class="headerlink" title="Core组成部分"></a>Core组成部分</h2><h3 id="Swap基本概念"><a href="#Swap基本概念" class="headerlink" title="Swap基本概念"></a>Swap基本概念</h3><img src="/2024/10/14/carry_coin_architecture_2/core-0.png" class="">
+
+<ul>
+<li>SwapEngine <ul>
+<li>套利引擎，内部独立线程，Handler执行 ，Center构建,Job注册</li>
+<li>SwapEngine最初设计可以支持dex(n)&lt;-&gt;cex(n),目前阶段仅SingleSwapEngine 实现了dex(1，n)&lt;-&gt;cex(1)的套利动作,<br>即一个Engine绑定1个cex和N个dex；</li>
+</ul>
+</li>
+<li>SwapContext(标记接口)<ul>
+<li>SwapContext是SwapEngine的上下文，是个巨型类，为了跨交易所共用上下文预留的,主要是保存SwapEngine运行时的数据，包含了所有重要对象的引用：交易所信息，交易对信息，交易所账户信息;</li>
+</ul>
+</li>
+<li>SwapConfig<ul>
+<li>SwapConfig是SwapEngine的配置类，主要是保存SwapEngine运行时所需的配置信息;</li>
+</ul>
+</li>
+<li>SwapHandler <ul>
+<li>用来初始化Context，同步job的阻塞加载，异步job的注册，BizDataLoaderContext首次初始化和校验</li>
+</ul>
+</li>
+<li>SwapInitializerConfig<ul>
+<li>根据yml初始化SwapLauncher来触发Engine工作；</li>
+</ul>
+</li>
+<li>SwapLauncher<ul>
+<li>交易引擎启动器</li>
+</ul>
+</li>
+</ul>
+<h3 id="Center"><a href="#Center" class="headerlink" title="Center"></a>Center</h3><blockquote>
+<p>Cex中心交易所相关的抽象和套利动作</p>
+</blockquote>
+<img src="/2024/10/14/carry_coin_architecture_2/center-1.png" class="">
+
+<ul>
+<li>CenterExchangeHolder<ul>
+<li>中心交易所的顶级抽象，主要是一些技术动作： 注册同步和异步的取数器（Job），获取Context数据等动作</li>
+<li>交易所支持同步和异步取数两种模式，同步在SwapEngine初始化时执行一次，异步周期性运行；<ul>
+<li>周期性执行使用ScheduledExecutorService，实现使用了alibaba的<code>transmittable-thread-local</code>库，主要目的解决异步执行时上下文传递的问题；</li>
+<li>Job方式取来的数据都会放在BizDataLoaderContext容器中；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AbstractCenterExchangeHolder <ul>
+<li>对CenterExchangeHolder的基本实现</li>
+</ul>
+</li>
+<li>CenterExchangeHolderBehavior<ul>
+<li>业务动作抽象接口：Limit&#x2F;Marker下单，撤单，获取订单状态，提现，转账等业务动作,这个接口也是pipeline和job中操作Cex的核心，非必要业务流中<br>不操作CenterExchangeHolder,AbstractCenterExchangeHolder这种顶级接口；</li>
+<li>Cex交易所操作使用<a target="_blank" rel="noopener" href="https://github.com/knowm/XChange">Xchange</a>完成;</li>
+</ul>
+</li>
+<li>FacilitySupport<ul>
+<li>提供一套基本的Cex实现模板</li>
+</ul>
+</li>
+<li>CenterSymbolInfo <ul>
+<li>Cex侧套利相关配置信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="Decenter"><a href="#Decenter" class="headerlink" title="Decenter"></a>Decenter</h3><blockquote>
+<p>Dex去中心交易平台相关的抽象,</p>
+</blockquote>
+<img src="/2024/10/14/carry_coin_architecture_2/decenter-dir.png" class="" title="包目录">
+<img src="/2024/10/14/carry_coin_architecture_2/decenter-1.png" class="" title="根对象">
+
+<h4 id="Decenter-protocol"><a href="#Decenter-protocol" class="headerlink" title="Decenter.protocol"></a>Decenter.protocol</h4><blockquote>
+<p>Decenter中SwapProtocol协议抽象，目前已实现包含solana,bsc链，odos,zerox平台的询价、交易动作;<br>设计过程中难点在于对不同链的交易动作进行同一视角进行抽象和设计；</p>
+</blockquote>
+<img src="/2024/10/14/carry_coin_architecture_2/decenter-SwapProtocol.png" class="">
+
+<h5 id="EVM部分"><a href="#EVM部分" class="headerlink" title="EVM部分"></a>EVM部分</h5><ul>
+<li>GenericWeb3jBehavior<Client><ul>
+<li>链上动作的通用抽象，默认只实现getNetwork,getWeb3jManager,考虑到多链支持Client客户端不定，所以作为泛型传入；</li>
+<li>必要动作queryTxConfirmed,getRawAmountOut,getBalanceOfNode做抽象方法，考虑到这几个方法不挑网络，入参回参明确，所以放在此处；</li>
+<li>不同链差异化动作放在下层实现.</li>
+</ul>
+</li>
+<li>EthGenericWeb3jBehavior<ul>
+<li>具象evm链的实现，主要是实现网络层面、Token层面的一些方法了allowance, getTransactionGasLimit, signTransaction, waitTxConfirmed, queryTxConfirmed, getNonce, getBalanceOfNode, tokenTransfer, getGasProvider, gasProvider</li>
+</ul>
+</li>
+<li>GenericSwapV2Impl,GenericSwapV3Impl<ul>
+<li>基于EthGenericWeb3jBehavior完成Dex swap全过程的方法,包含：getAmountsOut,swapExactTokensForTokens，swapExactTokensForTokensSupportingFeeOnTransferTokens</li>
+<li>getRawAmountOut区别于getAmountsOut，是用来通过evm中log数据获取最终交换到的token数量；</li>
+</ul>
+</li>
+<li>SwapExactTForTParam<ul>
+<li>上层通过该类传入swap所需参数；</li>
+</ul>
+</li>
+</ul>
+<h5 id="Solana部分"><a href="#Solana部分" class="headerlink" title="Solana部分"></a>Solana部分</h5><h5 id="ODOS部分"><a href="#ODOS部分" class="headerlink" title="ODOS部分"></a>ODOS部分</h5><h3 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h3><blockquote>
+<p>交易策略</p>
+</blockquote>
+<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><blockquote>
+<p>套利动作</p>
+</blockquote>
+<img src="/2024/10/14/carry_coin_architecture_2/core.png" class=""></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-13T01:03:42.000Z" title="2024/10/13 09:03:42">2024-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">3 minutes read (About 405 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/13/carry_coin_architecture_1/">Carry-Coin 一个自动化搬砖套利平台</a></p><div class="content"><p>Carry-Coin 是一个套利程序，程序从23年初开始开发至今，目前已经基本稳定，现在将程序的设计整理出来；<br>套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">-</span> carry-config-generator(python)</span><br><span class="line"><span class="bullet">    -</span> 框架:web3,pandas ; 工程主要负责根据dex,cex，第三方：1inch,odos,dexscreener 数据，进行数据分析最终生成套利配置；</span><br><span class="line"><span class="bullet">-</span> carry-core (Java)</span><br><span class="line"><span class="bullet">    -</span> 一个基于Java的套利核心程序，dex&lt;-&gt;cex套利逻辑的顶层抽象,SwapEngine，SwapStategy, ArbitrageProcessor,CenterExchange,DecenterExchanage,SwapProtocol 等;</span><br><span class="line"><span class="bullet">-</span> carry-worker (Java)</span><br><span class="line"><span class="bullet">    -</span> 框架:Springboot3.2.5,Xchange,Web3j,RxJava3,Guava等；工程基于core实现的不同dex,cex的监控、告警、通知、搬运、买卖逻辑；</span><br><span class="line"><span class="bullet">-</span> carry-protocol-adapter(Nodejs)</span><br><span class="line"><span class="bullet">    -</span> 基于Uniswap-sdk ,jupiter-swap-api(solana)开发的套利协议适配器，适配v2/v3询价；</span><br><span class="line"><span class="bullet">-</span> carry-web-front (Nodejs)</span><br><span class="line"><span class="bullet">    -</span> Vue3.0+TypeScript+Vite5+Ant-Design-Vue等，工程主要管理平台的前端页面，包括套利开关、线上配置、交易数据监控，链上数据监控报表等；</span><br><span class="line"><span class="bullet">-</span> carry-web-server (Java)</span><br><span class="line"><span class="bullet">    -</span> 框架: Spring Cloud Alibaba, Mysql, 管理平台的后端服务；</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="部署架构"><a href="#部署架构" class="headerlink" title="部署架构"></a>部署架构</h3><img src="/2024/10/13/carry_coin_architecture_1/deploy.png" class="" title="部署">
 
 <h3 id="程序截图"><a href="#程序截图" class="headerlink" title="程序截图"></a>程序截图</h3><img src="/2024/10/13/carry_coin_architecture_1/swap-detail.png" class="" title="过程详情">
 
@@ -77,137 +216,7 @@
 <h5 id="平台"><a href="#平台" class="headerlink" title="平台"></a>平台</h5><ul>
 <li>jeecg-boot</li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-13T01:03:42.000Z" title="2024/10/13 09:03:42">2024-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-coin/">Carry-coin</a></span><span class="level-item">6 minutes read (About 847 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/13/carry_coin_architecture_2/">Carry-Coin 架构设计 Core模块(1)</a></p><div class="content"><h2 id="Core组成部分"><a href="#Core组成部分" class="headerlink" title="Core组成部分"></a>Core组成部分</h2><h3 id="Swap基本概念"><a href="#Swap基本概念" class="headerlink" title="Swap基本概念"></a>Swap基本概念</h3><img src="/2024/10/13/carry_coin_architecture_2/core-0.png" class="">
-
-<ul>
-<li>SwapEngine <ul>
-<li>套利引擎，内部独立线程，Handler执行 ，Center构建,Job注册</li>
-<li>SwapEngine最初设计可以支持dex(n)&lt;-&gt;cex(n),目前阶段仅SingleSwapEngine 实现了dex(1，n)&lt;-&gt;cex(1)的套利动作,<br>即一个Engine绑定1个cex和N个dex；</li>
-</ul>
-</li>
-<li>SwapContext(标记接口)<ul>
-<li>SwapContext是SwapEngine的上下文，是个巨型类，为了跨交易所共用上下文预留的,主要是保存SwapEngine运行时的数据，包含了所有重要对象的引用：交易所信息，交易对信息，交易所账户信息;</li>
-</ul>
-</li>
-<li>SwapConfig<ul>
-<li>SwapConfig是SwapEngine的配置类，主要是保存SwapEngine运行时所需的配置信息;</li>
-</ul>
-</li>
-<li>SwapHandler <ul>
-<li>用来初始化Context，同步job的阻塞加载，异步job的注册，BizDataLoaderContext首次初始化和校验</li>
-</ul>
-</li>
-<li>SwapInitializerConfig<ul>
-<li>根据yml初始化SwapLauncher来触发Engine工作；</li>
-</ul>
-</li>
-<li>SwapLauncher<ul>
-<li>交易引擎启动器</li>
-</ul>
-</li>
-</ul>
-<h3 id="Center"><a href="#Center" class="headerlink" title="Center"></a>Center</h3><blockquote>
-<p>Cex中心交易所相关的抽象和套利动作</p>
-</blockquote>
-<img src="/2024/10/13/carry_coin_architecture_2/center-1.png" class="">
-
-<ul>
-<li>CenterExchangeHolder<ul>
-<li>中心交易所的顶级抽象，主要是一些技术动作： 注册同步和异步的取数器（Job），获取Context数据等动作</li>
-<li>交易所支持同步和异步取数两种模式，同步在SwapEngine初始化时执行一次，异步周期性运行；<ul>
-<li>周期性执行使用ScheduledExecutorService，实现使用了alibaba的<code>transmittable-thread-local</code>库，主要目的解决异步执行时上下文传递的问题；</li>
-<li>Job方式取来的数据都会放在BizDataLoaderContext容器中；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>AbstractCenterExchangeHolder <ul>
-<li>对CenterExchangeHolder的基本实现</li>
-</ul>
-</li>
-<li>CenterExchangeHolderBehavior<ul>
-<li>业务动作抽象接口：Limit&#x2F;Marker下单，撤单，获取订单状态，提现，转账等业务动作,这个接口也是pipeline和job中操作Cex的核心，非必要业务流中<br>不操作CenterExchangeHolder,AbstractCenterExchangeHolder这种顶级接口；</li>
-<li>Cex交易所操作使用<a target="_blank" rel="noopener" href="https://github.com/knowm/XChange">Xchange</a>完成;</li>
-</ul>
-</li>
-<li>FacilitySupport<ul>
-<li>提供一套基本的Cex实现模板</li>
-</ul>
-</li>
-<li>CenterSymbolInfo <ul>
-<li>Cex侧套利相关配置信息</li>
-</ul>
-</li>
-</ul>
-<h3 id="Decenter"><a href="#Decenter" class="headerlink" title="Decenter"></a>Decenter</h3><blockquote>
-<p>Dex去中心交易平台相关的抽象,</p>
-</blockquote>
-<img src="/2024/10/13/carry_coin_architecture_2/decenter-dir.png" class="" title="包目录">
-<img src="/2024/10/13/carry_coin_architecture_2/decenter-1.png" class="" title="根对象">
-
-<h4 id="Decenter-protocol"><a href="#Decenter-protocol" class="headerlink" title="Decenter.protocol"></a>Decenter.protocol</h4><blockquote>
-<p>Decenter中SwapProtocol协议抽象，目前已实现包含solana,bsc链，odos,zerox平台的询价、交易动作;<br>设计过程中难点在于对不同链的交易动作进行同一视角进行抽象和设计；</p>
-</blockquote>
-<img src="/2024/10/13/carry_coin_architecture_2/decenter-SwapProtocol.png" class="">
-
-<h5 id="EVM部分"><a href="#EVM部分" class="headerlink" title="EVM部分"></a>EVM部分</h5><ul>
-<li>GenericWeb3jBehavior<Client><ul>
-<li>链上动作的通用抽象，默认只实现getNetwork,getWeb3jManager,考虑到多链支持Client客户端不定，所以作为泛型传入；</li>
-<li>必要动作queryTxConfirmed,getRawAmountOut,getBalanceOfNode做抽象方法，考虑到这几个方法不挑网络，入参回参明确，所以放在此处；</li>
-<li>不同链差异化动作放在下层实现.</li>
-</ul>
-</li>
-<li>EthGenericWeb3jBehavior<ul>
-<li>具象evm链的实现，主要是实现网络层面、Token层面的一些方法了allowance, getTransactionGasLimit, signTransaction, waitTxConfirmed, queryTxConfirmed, getNonce, getBalanceOfNode, tokenTransfer, getGasProvider, gasProvider</li>
-</ul>
-</li>
-<li>GenericSwapV2Impl,GenericSwapV3Impl<ul>
-<li>基于EthGenericWeb3jBehavior完成Dex swap全过程的方法,包含：getAmountsOut,swapExactTokensForTokens，swapExactTokensForTokensSupportingFeeOnTransferTokens</li>
-<li>getRawAmountOut区别于getAmountsOut，是用来通过evm中log数据获取最终交换到的token数量；</li>
-</ul>
-</li>
-<li>SwapExactTForTParam<ul>
-<li>上层通过该类传入swap所需参数；</li>
-</ul>
-</li>
-</ul>
-<h5 id="Solana部分"><a href="#Solana部分" class="headerlink" title="Solana部分"></a>Solana部分</h5><h5 id="ODOS部分"><a href="#ODOS部分" class="headerlink" title="ODOS部分"></a>ODOS部分</h5><h3 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h3><blockquote>
-<p>交易策略</p>
-</blockquote>
-<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><blockquote>
-<p>套利动作</p>
-</blockquote>
-<img src="/2024/10/13/carry_coin_architecture_2/core.png" class=""></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-13T01:03:42.000Z" title="2024/10/13 09:03:42">2024-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/carry-coin/">carry-coin</a></span><span class="level-item">a few seconds read (About 47 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/13/carry_coin_architecture_3/">Carry-Coin 架构设计 Core模块(2)</a></p><div class="content"><h2 id="Action-组成部分"><a href="#Action-组成部分" class="headerlink" title="Action 组成部分"></a>Action 组成部分</h2><img src="/2024/10/13/carry_coin_architecture_3/any-pipeline.png" class="">
-
-<ul>
-<li>AbstractForwardPipeline</li>
-<li>AbstractReversePipeline</li>
-<li>CommonCutOffForwardPipeline</li>
-<li>CommonLimitWaitForwardPipeline</li>
-<li>CommonReversePipeline</li>
-<li>DebugReversePipeline</li>
-<li>DepositAndSellPipeline</li>
-<li>OnlySwapInChainPipeline</li>
-<li>SolanaReversePipeline</li>
-<li>TransactionRecordFactory</li>
-<li>WithdrawAndSellPipeline</li>
-</ul>
-<h2 id="Job-组成部分"><a href="#Job-组成部分" class="headerlink" title="Job 组成部分"></a>Job 组成部分</h2><blockquote>
-<p>异步任务</p>
-</blockquote>
-<ul>
-<li>BalanceRest200msJob</li>
-<li>ChainAccountMonitor10mJob</li>
-<li>CleanBalance1mJob</li>
-<li>ConsumerMiddleCoinBuyAndSellJob</li>
-<li>FundingRecordRest200msJob</li>
-<li>LoaderDataContextMonitor1sJob</li>
-<li>PendingPlaceOrderJob</li>
-<li>ResetSymbolConfigJob</li>
-<li>RiseMonitorRest10sJob</li>
-<li>SelfOrderRest100msJob</li>
-</ul>
-</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/apple-touch-icon.png" alt="Gavin"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Gavin</p><p class="is-size-6 is-block">Full-Stack Engineer &amp; Web3 Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>ZheJiang, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/konbluesky" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com/blackjackhoho"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/konbluesky" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Carry-coin/"><span class="level-start"><span class="level-item">Carry-coin</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/carry-coin/"><span class="level-start"><span class="level-item">carry-coin</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-13T01:03:42.000Z">2024-10-13</time></p><p class="title"><a href="/2024/10/13/carry_coin_architecture_1/">Carry-Coin 一个自动化搬砖套利平台</a></p><p class="categories"><a href="/categories/Carry-coin/">Carry-coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-13T01:03:42.000Z">2024-10-13</time></p><p class="title"><a href="/2024/10/13/carry_coin_architecture_2/">Carry-Coin 架构设计 Core模块(1)</a></p><p class="categories"><a href="/categories/Carry-coin/">Carry-coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-13T01:03:42.000Z">2024-10-13</time></p><p class="title"><a href="/2024/10/13/carry_coin_architecture_3/">Carry-Coin 架构设计 Core模块(2)</a></p><p class="categories"><a href="/categories/carry-coin/">carry-coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-02T02:42:20.000Z">2024-09-02</time></p><p class="title"><a href="/2024/09/02/traffic_optimization_idea/">Carry-Coin 记服务迁移和流量优化</a></p><p class="categories"><a href="/categories/carry-coin/">carry-coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-07-13T07:17:22.000Z">2024-07-13</time></p><p class="title"><a href="/2024/07/13/carry_coin_jasypt/">Carry-Coin 中 Jasypt 的应用</a></p><p class="categories"><a href="/categories/carry-coin/">carry-coin</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">July 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Architecture/"><span class="tag">Architecture</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SpringBoot/"><span class="tag">SpringBoot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jasypt/"><span class="tag">jasypt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/optimization/"><span class="tag">optimization</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%BF%97%E6%B8%85%E7%90%86/"><span class="tag">日志清理</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Gavin&#039;s Home</a><p class="is-size-7"><span>&copy; 2024 Gavin</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/apple-touch-icon.png" alt="Gavin"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Gavin</p><p class="is-size-6 is-block">Full-Stack Engineer &amp; Web3 Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>ZheJiang, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Category</p><a href="/categories/"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/konbluesky" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com/blackjackhoho"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/konbluesky" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Carry-Coin/"><span class="level-start"><span class="level-item">Carry Coin</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-15T09:03:42.000Z">2024-10-15</time></p><p class="title"><a href="/2024/10/15/carry_coin_architecture_3/">Carry-Coin 架构设计 Core模块(2)</a></p><p class="categories"><a href="/categories/Carry-Coin/">Carry Coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-14T06:53:42.000Z">2024-10-14</time></p><p class="title"><a href="/2024/10/14/carry_coin_architecture_2/">Carry-Coin 架构设计 Core模块(1)</a></p><p class="categories"><a href="/categories/Carry-Coin/">Carry Coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-10-13T01:03:42.000Z">2024-10-13</time></p><p class="title"><a href="/2024/10/13/carry_coin_architecture_1/">Carry-Coin 一个自动化搬砖套利平台</a></p><p class="categories"><a href="/categories/Carry-Coin/">Carry Coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-02T02:42:20.000Z">2024-09-02</time></p><p class="title"><a href="/2024/09/02/traffic_optimization_idea/">Carry-Coin 记服务迁移和流量优化</a></p><p class="categories"><a href="/categories/Carry-Coin/">Carry Coin</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-07-13T07:17:22.000Z">2024-07-13</time></p><p class="title"><a href="/2024/07/13/carry_coin_jasypt/">Carry-Coin 中 Jasypt 的应用</a></p><p class="categories"><a href="/categories/Carry-Coin/">Carry Coin</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">October 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">September 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">July 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">February 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Architecture/"><span class="tag">Architecture</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SpringBoot/"><span class="tag">SpringBoot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jasypt/"><span class="tag">jasypt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/optimization/"><span class="tag">optimization</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%BF%97%E6%B8%85%E7%90%86/"><span class="tag">日志清理</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Gavin&#039;s Home</a><p class="is-size-7"><span>&copy; 2024 Gavin</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
