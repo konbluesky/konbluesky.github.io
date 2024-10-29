@@ -29,179 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Gavin&#039;s Home</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-15T09:03:42.000Z" title="2024/10/15 17:03:42">2024-10-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-15T14:47:33.000Z" title="2024/10/15 22:47:33">2024-10-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">2 minutes read (About 358 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/15/carry_coin_architecture_3/">Carry-Coin 架构设计 Core模块(2)</a></p><div class="content"><h2 id="Action-组成部分"><a href="#Action-组成部分" class="headerlink" title="Action 组成部分"></a>Action 组成部分</h2><img src="/2024/10/15/carry_coin_architecture_3/any-pipeline.png" class="">
-
-<ul>
-<li>AbstractForwardPipeline<ul>
-<li>正向套利(cex-&gt;dex)流水线抽象类</li>
-</ul>
-</li>
-<li>AbstractReversePipeline<ul>
-<li>逆向套利(dex-&gt;cex)流水线抽象类</li>
-</ul>
-</li>
-<li>CommonCutOffForwardPipeline</li>
-<li>CommonLimitWaitForwardPipeline</li>
-<li>CommonReversePipeline</li>
-<li>DebugReversePipeline</li>
-<li>WithdrawAndSellPipeline<ul>
-<li>Cex账户留币策略时触发：当账户留币且链上价格比交易所高时，提现-&gt;dex-&gt;卖出</li>
-</ul>
-</li>
-<li>DepositAndSellPipeline<ul>
-<li>Dex留币策略触发：钱包中留币且交易所价格大于链上：充币-&gt;cex-&gt;卖出</li>
-</ul>
-</li>
-<li>OnlySwapInChainPipeline<ul>
-<li>Dex留币策略触发：钱包中留币且链上价格高于Cex：卖出</li>
-</ul>
-</li>
-<li>SolanaReversePipeline<ul>
-<li>Solana逆向套利流水线</li>
-</ul>
-</li>
-<li>TransactionRecordFactory</li>
-</ul>
-<h2 id="Job-组成部分"><a href="#Job-组成部分" class="headerlink" title="Job 组成部分"></a>Job 组成部分</h2><blockquote>
-<p>异步任务，优先使用websocket取数，如cex不支持则使用rest方式，rest调用一定要实现限频策略，具体见Xchange</p>
-</blockquote>
-<ul>
-<li>BalanceRest200msJob<ul>
-<li>每200ms 调rest接口取余额；</li>
-</ul>
-</li>
-<li>ChainAccountMonitor10mJob<ul>
-<li>每10分钟 监控链上账户余额；</li>
-</ul>
-</li>
-<li>CleanBalance1mJob<ul>
-<li>每1分钟 扫描账户符合条件触发留币策略</li>
-</ul>
-</li>
-<li>ConsumerMiddleCoinBuyAndSellJob<ul>
-<li>三角套利时，中间币消耗情况入库，订阅的交易所购买中间币（目前BNB,SOL）</li>
-</ul>
-</li>
-<li>FundingRecordRest200msJob<ul>
-<li>每200ms 调rest接口取充提记录监控充提状态；</li>
-</ul>
-</li>
-<li>LoaderDataContextMonitor1sJob<ul>
-<li>最初构想用来存储下单时，当前depth,ticker,orderbook等数据，数据量太大，有条件的情况下上nosql, 就不入db了；</li>
-</ul>
-</li>
-<li>PendingPlaceOrderJob<ul>
-<li>定时扫描未完成订单，并尝试重试</li>
-</ul>
-</li>
-<li>ResetSymbolConfigJob<ul>
-<li>重置套利币本配置</li>
-</ul>
-</li>
-<li>RiseMonitorRest10sJob</li>
-<li>SelfOrderRest100msJob</li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-14T06:53:42.000Z" title="2024/10/14 14:53:42">2024-10-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-14T08:12:58.000Z" title="2024/10/14 16:12:58">2024-10-14</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">6 minutes read (About 847 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/14/carry_coin_architecture_2/">Carry-Coin 架构设计 Core模块(1)</a></p><div class="content"><h2 id="Core组成部分"><a href="#Core组成部分" class="headerlink" title="Core组成部分"></a>Core组成部分</h2><h3 id="Swap基本概念"><a href="#Swap基本概念" class="headerlink" title="Swap基本概念"></a>Swap基本概念</h3><img src="/2024/10/14/carry_coin_architecture_2/core-0.png" class="">
-
-<ul>
-<li>SwapEngine <ul>
-<li>套利引擎，内部独立线程，Handler执行 ，Center构建,Job注册</li>
-<li>SwapEngine最初设计可以支持dex(n)&lt;-&gt;cex(n),目前阶段仅SingleSwapEngine 实现了dex(1，n)&lt;-&gt;cex(1)的套利动作,<br>即一个Engine绑定1个cex和N个dex；</li>
-</ul>
-</li>
-<li>SwapContext(标记接口)<ul>
-<li>SwapContext是SwapEngine的上下文，是个巨型类，为了跨交易所共用上下文预留的,主要是保存SwapEngine运行时的数据，包含了所有重要对象的引用：交易所信息，交易对信息，交易所账户信息;</li>
-</ul>
-</li>
-<li>SwapConfig<ul>
-<li>SwapConfig是SwapEngine的配置类，主要是保存SwapEngine运行时所需的配置信息;</li>
-</ul>
-</li>
-<li>SwapHandler <ul>
-<li>用来初始化Context，同步job的阻塞加载，异步job的注册，BizDataLoaderContext首次初始化和校验</li>
-</ul>
-</li>
-<li>SwapInitializerConfig<ul>
-<li>根据yml初始化SwapLauncher来触发Engine工作；</li>
-</ul>
-</li>
-<li>SwapLauncher<ul>
-<li>交易引擎启动器</li>
-</ul>
-</li>
-</ul>
-<h3 id="Center"><a href="#Center" class="headerlink" title="Center"></a>Center</h3><blockquote>
-<p>Cex中心交易所相关的抽象和套利动作</p>
-</blockquote>
-<img src="/2024/10/14/carry_coin_architecture_2/center-1.png" class="">
-
-<ul>
-<li>CenterExchangeHolder<ul>
-<li>中心交易所的顶级抽象，主要是一些技术动作： 注册同步和异步的取数器（Job），获取Context数据等动作</li>
-<li>交易所支持同步和异步取数两种模式，同步在SwapEngine初始化时执行一次，异步周期性运行；<ul>
-<li>周期性执行使用ScheduledExecutorService，实现使用了alibaba的<code>transmittable-thread-local</code>库，主要目的解决异步执行时上下文传递的问题；</li>
-<li>Job方式取来的数据都会放在BizDataLoaderContext容器中；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>AbstractCenterExchangeHolder <ul>
-<li>对CenterExchangeHolder的基本实现</li>
-</ul>
-</li>
-<li>CenterExchangeHolderBehavior<ul>
-<li>业务动作抽象接口：Limit&#x2F;Marker下单，撤单，获取订单状态，提现，转账等业务动作,这个接口也是pipeline和job中操作Cex的核心，非必要业务流中<br>不操作CenterExchangeHolder,AbstractCenterExchangeHolder这种顶级接口；</li>
-<li>Cex交易所操作使用<a target="_blank" rel="noopener" href="https://github.com/knowm/XChange">Xchange</a>完成;</li>
-</ul>
-</li>
-<li>FacilitySupport<ul>
-<li>提供一套基本的Cex实现模板</li>
-</ul>
-</li>
-<li>CenterSymbolInfo <ul>
-<li>Cex侧套利相关配置信息</li>
-</ul>
-</li>
-</ul>
-<h3 id="Decenter"><a href="#Decenter" class="headerlink" title="Decenter"></a>Decenter</h3><blockquote>
-<p>Dex去中心交易平台相关的抽象,</p>
-</blockquote>
-<img src="/2024/10/14/carry_coin_architecture_2/decenter-dir.png" class="" title="包目录">
-<img src="/2024/10/14/carry_coin_architecture_2/decenter-1.png" class="" title="根对象">
-
-<h4 id="Decenter-protocol"><a href="#Decenter-protocol" class="headerlink" title="Decenter.protocol"></a>Decenter.protocol</h4><blockquote>
-<p>Decenter中SwapProtocol协议抽象，目前已实现包含solana,bsc链，odos,zerox平台的询价、交易动作;<br>设计过程中难点在于对不同链的交易动作进行同一视角进行抽象和设计；</p>
-</blockquote>
-<img src="/2024/10/14/carry_coin_architecture_2/decenter-SwapProtocol.png" class="">
-
-<h5 id="EVM部分"><a href="#EVM部分" class="headerlink" title="EVM部分"></a>EVM部分</h5><ul>
-<li>GenericWeb3jBehavior<Client><ul>
-<li>链上动作的通用抽象，默认只实现getNetwork,getWeb3jManager,考虑到多链支持Client客户端不定，所以作为泛型传入；</li>
-<li>必要动作queryTxConfirmed,getRawAmountOut,getBalanceOfNode做抽象方法，考虑到这几个方法不挑网络，入参回参明确，所以放在此处；</li>
-<li>不同链差异化动作放在下层实现.</li>
-</ul>
-</li>
-<li>EthGenericWeb3jBehavior<ul>
-<li>具象evm链的实现，主要是实现网络层面、Token层面的一些方法了allowance, getTransactionGasLimit, signTransaction, waitTxConfirmed, queryTxConfirmed, getNonce, getBalanceOfNode, tokenTransfer, getGasProvider, gasProvider</li>
-</ul>
-</li>
-<li>GenericSwapV2Impl,GenericSwapV3Impl<ul>
-<li>基于EthGenericWeb3jBehavior完成Dex swap全过程的方法,包含：getAmountsOut,swapExactTokensForTokens，swapExactTokensForTokensSupportingFeeOnTransferTokens</li>
-<li>getRawAmountOut区别于getAmountsOut，是用来通过evm中log数据获取最终交换到的token数量；</li>
-</ul>
-</li>
-<li>SwapExactTForTParam<ul>
-<li>上层通过该类传入swap所需参数；</li>
-</ul>
-</li>
-</ul>
-<h5 id="Solana部分"><a href="#Solana部分" class="headerlink" title="Solana部分"></a>Solana部分</h5><h5 id="ODOS部分"><a href="#ODOS部分" class="headerlink" title="ODOS部分"></a>ODOS部分</h5><h3 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h3><blockquote>
-<p>交易策略</p>
-</blockquote>
-<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a>swap</h3><blockquote>
-<p>套利动作</p>
-</blockquote>
-<img src="/2024/10/14/carry_coin_architecture_2/core.png" class=""></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-13T01:03:42.000Z" title="2024/10/13 09:03:42">2024-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">3 minutes read (About 406 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/13/carry_coin_architecture_1/">Carry-Coin 一个自动化搬砖套利平台</a></p><div class="content"><h2 id="Carry-Coin-是一个套利程序，程序从23年初开始开发至今，目前已经基本稳定，现在将程序的设计整理出来；套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；"><a href="#Carry-Coin-是一个套利程序，程序从23年初开始开发至今，目前已经基本稳定，现在将程序的设计整理出来；套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；" class="headerlink" title="Carry-Coin 是一个套利程序，程序从23年初开始开发至今，目前已经基本稳定，现在将程序的设计整理出来；套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；"></a>Carry-Coin 是一个套利程序，程序从23年初开始开发至今，目前已经基本稳定，现在将程序的设计整理出来；<br>套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；<br></div><a class="article-more button is-small is-size-7" href="/2024/10/13/carry_coin_architecture_1/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-09-02T02:42:20.000Z" title="2024/9/2 10:42:20">2024-09-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">8 minutes read (About 1167 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/09/02/traffic_optimization_idea/">Carry-Coin 记服务迁移和流量优化</a></p><div class="content"><p>最近Contabo服务器频繁死机，发邮件给官方反应问题，一开始嘴硬说没问题让自查，沟通2天又是截图又是各种开票，最后承认问题说技术团队排查但是不给解决时间</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Gavin&#039;s Home</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-15T09:03:42.000Z" title="2024/10/15 17:03:42">2024-10-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-15T14:47:33.000Z" title="2024/10/15 22:47:33">2024-10-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">2 minutes read (About 369 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/15/carry_coin_architecture_3/">Carry-Coin 架构设计 Core模块(2)</a></p><div class="content"><p>Carry-Coin Core的PipelineAction，Job的设计</p></div><a class="article-more button is-small is-size-7" href="/2024/10/15/carry_coin_architecture_3/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-14T06:53:42.000Z" title="2024/10/14 14:53:42">2024-10-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-14T08:12:58.000Z" title="2024/10/14 16:12:58">2024-10-14</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">6 minutes read (About 859 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/14/carry_coin_architecture_2/">Carry-Coin 架构设计 Core模块(1)</a></p><div class="content"><p>Carry-Coin Core的Center，Decenter,protocol的设计</p></div><a class="article-more button is-small is-size-7" href="/2024/10/14/carry_coin_architecture_2/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-10-13T01:03:42.000Z" title="2024/10/13 09:03:42">2024-10-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">3 minutes read (About 406 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/10/13/carry_coin_architecture_1/">Carry-Coin 一个自动化搬砖套利平台</a></p><div class="content"><p>Carry-Coin 是一个套利程序，程序从23年初开始开发至今，目前已经基本稳定，现在将程序的设计整理出来；<br>套利思路很简单：程序监控Cex和Dex平台，针对同一币种发现差价后自动化搬运；</p></div><a class="article-more button is-small is-size-7" href="/2024/10/13/carry_coin_architecture_1/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-09-02T02:42:20.000Z" title="2024/9/2 10:42:20">2024-09-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-10-13T15:12:12.000Z" title="2024/10/13 23:12:12">2024-10-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">8 minutes read (About 1167 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/09/02/traffic_optimization_idea/">Carry-Coin 记服务迁移和流量优化</a></p><div class="content"><p>最近Contabo服务器频繁死机，发邮件给官方反应问题，一开始嘴硬说没问题让自查，沟通2天又是截图又是各种开票，最后承认问题说技术团队排查但是不给解决时间</p>
 <blockquote>
 <p>邮件回复<br>  <img src="/2024/09/02/traffic_optimization_idea/mail-1.png" class="">  </p>
 </blockquote>
@@ -229,24 +57,12 @@
 <img src="/2024/09/02/traffic_optimization_idea/traffic-2.png" class="">
 
 <p>先跑着一个月后再看。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-07-13T07:17:22.000Z" title="2024/7/13 15:17:22">2024-07-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-07-17T14:00:12.000Z" title="2024/7/17 22:00:12">2024-07-17</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">4 minutes read (About 587 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/07/13/carry_coin_jasypt/">Carry-Coin 中 Jasypt 的应用</a></p><div class="content"><p>自从最近L君小弟电脑中毒，疑似私钥泄漏，导致3W u被盗，程序一直以来裸奔的状态下，再次让我菊花一紧。<br>于是，我开始了对Spring Boot的jasypt加密配置的研究。 最坏情况服务器即使被黑，也要尽可能保证程序的安全。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-07-13T07:17:22.000Z" title="2024/7/13 15:17:22">2024-07-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-07-17T14:00:12.000Z" title="2024/7/17 22:00:12">2024-07-17</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">4 minutes read (About 590 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/07/13/carry_coin_jasypt/">Carry-Coin 中 Jasypt 的应用</a></p><div class="content"><p>自从最近L君小弟电脑中毒，疑似私钥泄漏，导致3W u被盗，反观我的程序一直以来裸奔的状态下，再次菊花一紧。<br>于是，我开始了对Spring Boot的jasypt加密配置的研究。 最坏情况服务器即使被黑，也要尽可能保证程序的安全。</p>
 <ol>
 <li>配置文件中关键信息： 交易所token，钱包私钥加密；</li>
 <li>jar中yml打包时排除，服务器上用密文配置执行；</li>
 <li>解密密码动态设置；</li>
-</ol>
-<h2 id="jasypt-集成"><a href="#jasypt-集成" class="headerlink" title="jasypt 集成"></a>jasypt 集成</h2><h3 id="程序引入"><a href="#程序引入" class="headerlink" title="程序引入"></a>程序引入</h3><p>pom.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.ulisesbocchio<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jasypt-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>application.yml</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jasypt:</span></span><br><span class="line">  <span class="attr">encryptor:</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">$&#123;JASYPT_ENCRYPTOR_PASSWORD&#125;</span></span><br></pre></td></tr></table></figure>
-<p>Application.java</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * &lt;p&gt; @Date : 2023/3/19 &lt;/p&gt;</span><br><span class="line"> * &lt;p&gt; @author konbluesky &lt;/p&gt;</span><br><span class="line"> */</span><br><span class="line">@SpringBootApplication(scanBasePackages = &quot;com.block&quot;)</span><br><span class="line">@EnableScheduling</span><br><span class="line">@EnableAsync</span><br><span class="line">@EnableJpaAuditing</span><br><span class="line">// WARN bad smell</span><br><span class="line">@EncryptablePropertySources(&#123;</span><br><span class="line">        @EncryptablePropertySource(value = &quot;file:./config/application.yml&quot;,ignoreResourceNotFound = true),</span><br><span class="line">        @EncryptablePropertySource(value = &quot;classpath:application.yml&quot;,ignoreResourceNotFound = true)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">@EnableEncryptableProperties</span><br><span class="line">public class Application &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="打包排除"><a href="#打包排除" class="headerlink" title="打包排除"></a>打包排除</h3><p>pom.xml,设置打包时排除yml文件，避免铭文yml误打包到jar中</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.*<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 用springboot 打包时 排除yml--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.yml<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><p>原启动方式需要通过-Djasypt.encryptor.password&#x3D;”the password”,来设置加密密码。这种方式用<code>jps -mlv</code>可以看到启动命令，但是这种方式不安全，依然容易泄露密码。<br>为了安全起见，我们需要在启动脚本中设置环境变量 <code>JASYPT_ENCRYPTOR_PASSWORD</code> 来加密配置文件中的敏感信息。设置后又担心环境变量被echo出来，所以需要设置环境变量时，需要隐藏输入内容<br>同时控制变量作用域在shell内部；</p>
-<p>最终脚本如下，关键语句是export和unset；</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取当前脚本所在目录的绝对路径</span></span><br><span class="line">SCRIPT_DIR=&quot;$(cd &quot;$(dirname &quot;$0&quot;)&quot; &amp;&amp; pwd)&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入脚本所在目录</span></span><br><span class="line">cd &quot;$SCRIPT_DIR&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">提示用户输入 JASYPT_ENCRYPTOR_PASSWORD，并隐藏输入内容</span></span><br><span class="line">read -sp &quot;Enter App password: &quot; JASYPT_PASSWORD</span><br><span class="line">echo</span><br><span class="line"></span><br><span class="line">export JASYPT_ENCRYPTOR_PASSWORD=$JASYPT_PASSWORD</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入了 JASYPT_ENCRYPTOR_PASSWORD</span></span><br><span class="line">if [ -z &quot;$JASYPT_PASSWORD&quot; ]; then</span><br><span class="line">  echo &quot;jasypt.encryptor.password is required.&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动Java程序并使用<span class="built_in">nohup</span>确保它在后台运行</span></span><br><span class="line">nohup java -jar $(ls -t trade-monitor-*.jar | head -1) \</span><br><span class="line">  --spring.config.location=file:./config/ \</span><br><span class="line">  --spring.application.name=gateio\</span><br><span class="line">  -XX:+PrintGCDetails \</span><br><span class="line">  -XX:+PrintGCDateStamps \</span><br><span class="line">  -Xloggc:$SCRIPT_DIR/gc.log \</span><br><span class="line">  -Xmx16G \</span><br><span class="line">  -Xms8G \</span><br><span class="line">  -XX:+UseG1GC \</span><br><span class="line">  -XX:NewRatio=3 \</span><br><span class="line">  -XX:SurvivorRatio=8 \</span><br><span class="line">  -XX:MaxMetaspaceSize=1024M \</span><br><span class="line">  -XX:MaxGCPauseMillis=200 \</span><br><span class="line">  -Xss1M &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">清除环境变量</span></span><br><span class="line">unset JASYPT_ENCRYPTOR_PASSWORD</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-02-13T15:12:12.000Z" title="2024/2/13 23:12:12">2024-02-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-02-22T15:12:12.000Z" title="2024/2/22 23:12:12">2024-02-22</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">6 minutes read (About 836 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/02/13/carry_coin_log_cleanup/">使用 Python 脚本清理 Carry-Coin 程序中的 Logback 日志</a></p><div class="content"><p>随着监控的币种越来越多，我的 Carry-Coin 程序中日志数据的日质量也不断增加，每天的日志文件大小达到约 40G。这不仅占用了大量的存储空间，还给日志分析带来了挑战。为了更有效地管理这些日志，我已经编写了一个程序来提取日志中与交易相关的信息，供后续分析使用。</p>
+</ol></div><a class="article-more button is-small is-size-7" href="/2024/07/13/carry_coin_jasypt/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-02-13T15:12:12.000Z" title="2024/2/13 23:12:12">2024-02-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-02-22T15:12:12.000Z" title="2024/2/22 23:12:12">2024-02-22</time></span><span class="level-item"><a class="link-muted" href="/categories/Carry-Coin/">Carry Coin</a></span><span class="level-item">6 minutes read (About 836 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/02/13/carry_coin_log_cleanup/">使用 Python 脚本清理 Carry-Coin 程序中的 Logback 日志</a></p><div class="content"><p>随着监控的币种越来越多，我的 Carry-Coin 程序中日志数据的日质量也不断增加，每天的日志文件大小达到约 40G。这不仅占用了大量的存储空间，还给日志分析带来了挑战。为了更有效地管理这些日志，我已经编写了一个程序来提取日志中与交易相关的信息，供后续分析使用。</p>
 <p>然而，在配置 Logback 的 <code>logback-spring.xml</code> 文件时，我设置了 <code>appender.rollingPolicy.maxHistory</code> 字段，旨在只保留最近 2 天的日志。然而，这一配置并未如预期生效。因此，我决定暂时使用 Python 脚本来手动清理旧的日志文件。</p>
 <hr>
 <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在 Carry-Coin 程序中，随着对越来越多币种的监控，日志文件的大小急剧增加，导致每天产生的日志文件约为 40G。虽然我已编写程序提取交易信息，但大量的日志数据依然占用了过多的磁盘空间。为此，我尝试通过调整 Logback 的配置来限制保留的日志数量。</p>
