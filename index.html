@@ -29,7 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Gavin&#039;s Home</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-28T01:37:45.000Z" title="2024/11/28 09:37:45">2024-11-28</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-28T02:38:01.000Z" title="2024/11/28 10:38:01">2024-11-28</time></span><span class="level-item">6 minutes read (About 874 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/28/about_2FA/">关于2FA</a></p><div class="content"><h2 id="什么是-2FA？"><a href="#什么是-2FA？" class="headerlink" title="什么是 2FA？"></a>什么是 2FA？</h2><p><strong>2FA（Two-Factor Authentication）</strong>，即双因素认证，是一种通过两种不同类别的验证手段来提高账户安全性的身份验证方法。它通过结合两个验证因素，确保即使一个验证手段被泄露，攻击者也难以完成身份冒充。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Gavin&#039;s Home</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/konbluesky"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-28T01:37:45.000Z" title="2024/11/28 09:37:45">2024-11-28</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-28T02:38:01.000Z" title="2024/11/28 10:38:01">2024-11-28</time></span><span class="level-item">6 minutes read (About 875 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/28/about_2FA/">关于2FA</a></p><div class="content"><h2 id="什么是-2FA？"><a href="#什么是-2FA？" class="headerlink" title="什么是 2FA？"></a>什么是 2FA？</h2><p><strong>2FA（Two-Factor Authentication）</strong>，即双因素认证，是一种通过两种不同类别的验证手段来提高账户安全性的身份验证方法。它通过结合两个验证因素，确保即使一个验证手段被泄露，攻击者也难以完成身份冒充。</p>
 <h3 id="两种验证因素的类型："><a href="#两种验证因素的类型：" class="headerlink" title="两种验证因素的类型："></a>两种验证因素的类型：</h3><ol>
 <li><strong>知识</strong>（Something you know）<ul>
 <li>用户知道的内容，如密码、PIN 码等。</li>
@@ -44,94 +44,7 @@
 </ul>
 </li>
 </ol>
-<p>2FA 需要至少包含其中的两种因素。例如，“密码+动态验证码”是一种常见的 2FA 实现。</p>
-<hr>
-<h2 id="为什么需要-2FA？"><a href="#为什么需要-2FA？" class="headerlink" title="为什么需要 2FA？"></a>为什么需要 2FA？</h2><p>单因素认证（如仅使用密码）容易被攻破，尤其是在以下场景：</p>
-<ul>
-<li>密码泄露（如数据泄漏、弱密码）。</li>
-<li>社会工程攻击（如钓鱼）。</li>
-<li>重用密码导致多账户失守。</li>
-</ul>
-<p>2FA 提供了额外的保护层，即使密码被窃取，攻击者仍需突破第二道验证关卡。</p>
-<hr>
-<h2 id="常见-2FA-场景"><a href="#常见-2FA-场景" class="headerlink" title="常见 2FA 场景"></a>常见 2FA 场景</h2><ol>
-<li><p><strong>密码 + 动态验证码（OTP）</strong></p>
-<ul>
-<li>登录时输入密码后，系统会发送一次性密码（通过短信、电子邮件或认证器App）。</li>
-<li>例如：银行账户登录时使用 Google Authenticator 动态验证码。</li>
-</ul>
-</li>
-<li><p><strong>密码 + 硬件令牌</strong></p>
-<ul>
-<li>用户需要插入 U2F 硬件令牌（如 YubiKey）并按下按钮完成身份验证。</li>
-<li>应用：Google 工作账户、GitHub 开发者账户。</li>
-</ul>
-</li>
-<li><p><strong>密码 + 生物特征</strong></p>
-<ul>
-<li>登录需要输入密码并完成指纹扫描或面部识别。</li>
-<li>应用：智能手机解锁、支付验证。</li>
-</ul>
-</li>
-<li><p><strong>生物特征 + 动态验证码</strong></p>
-<ul>
-<li>登录时需要扫描指纹，同时输入手机接收到的验证码。</li>
-<li>应用：某些高安全性企业系统。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="OTP（One-Time-Password）"><a href="#OTP（One-Time-Password）" class="headerlink" title="OTP（One-Time Password）"></a>OTP（One-Time Password）</h3><ul>
-<li><strong>定义</strong>：一种只在短时间内有效、使用一次即失效的动态密码。</li>
-<li><strong>特点</strong>：<ul>
-<li><strong>临时性</strong>：每次登录或交易生成一个新密码。</li>
-<li><strong>安全性高</strong>：即使密码被窃取，也无法重复使用。</li>
-</ul>
-</li>
-<li><strong>常用方式</strong>：<ul>
-<li>短信验证码</li>
-<li>邮件验证码</li>
-<li>基于 TOTP（时间型动态密码）算法的应用，如 Google Authenticator。</li>
-</ul>
-</li>
-</ul>
-<h2 id="常见开源实现"><a href="#常见开源实现" class="headerlink" title="常见开源实现"></a>常见开源实现</h2><h3 id="OTP-相关"><a href="#OTP-相关" class="headerlink" title="OTP 相关"></a>OTP 相关</h3><ol>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/google/google-authenticator">Google Authenticator</a></strong><ul>
-<li>基于 TOTP 和 HOTP 算法的动态密码生成工具。</li>
-<li>提供 Android 和 iOS 应用。</li>
-</ul>
-</li>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/pyauth/pyotp">PyOTP</a></strong><blockquote>
-<p>之前写的脚本就是用的这个</p>
-</blockquote>
-<ul>
-<li>用 Python 实现的 OTP 库，支持 TOTP 和 HOTP。</li>
-<li>适用于快速集成到 Python 项目中。</li>
-</ul>
-</li>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/freeotp/freeotp-android">FreeOTP</a></strong><ul>
-<li>开源的 TOTP 和 HOTP 验证器应用。</li>
-<li>可用于 Android 和 iOS。</li>
-</ul>
-</li>
-</ol>
-<h3 id="2FA-相关"><a href="#2FA-相关" class="headerlink" title="2FA 相关"></a>2FA 相关</h3><ol>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/keycloak/keycloak">Keycloak</a></strong><ul>
-<li>开源的身份和访问管理工具，支持 2FA。</li>
-<li>提供多种身份验证方式，包括 OTP。</li>
-</ul>
-</li>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/duosecurity/duo_openvpn">Duo Security</a></strong><ul>
-<li>提供基于双因素认证的开源工具，支持硬件令牌、短信和 OTP。</li>
-</ul>
-</li>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/authelia/authelia">Authelia</a></strong><ul>
-<li>全栈的身份验证系统，支持 2FA。</li>
-<li>适合自托管环境。</li>
-</ul>
-</li>
-</ol>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-27T03:10:22.000Z" title="2024/11/27 11:10:22">2024-11-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-27T04:38:19.000Z" title="2024/11/27 12:38:19">2024-11-27</time></span><span class="level-item"><a class="link-muted" href="/categories/HummingBot/">HummingBot</a></span><span class="level-item">3 minutes read (About 523 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/27/hummingbot_gateway/">Hummingbot Gateway AMM Middleware</a></p><div class="content"><p>Hummingbot Gateway 是一个 REST API，它公开与各种区块链（钱包、节点和链交互）和去中心化交易所（定价、交易和流动性提供）的连接。<br>它用 Typescript 编写，并利用现有的区块链和 DEX SDK。使用网关的优势在于它提供了一种与编程语言无关的方法来与区块链和 DEX 进行交互。</p></div><a class="article-more button is-small is-size-7" href="/2024/11/27/hummingbot_gateway/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-26T15:10:22.000Z" title="2024/11/26 23:10:22">2024-11-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-26T15:10:22.000Z" title="2024/11/26 23:10:22">2024-11-26</time></span><span class="level-item"><a class="link-muted" href="/categories/HummingBot/">HummingBot</a></span><span class="level-item">7 minutes read (About 1083 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/26/hummingbot_dev_env/">Hummingbot Macos下搭建开发调试环境</a></p><div class="content"><p>HummingBot中文社区组织交易比赛,时间从11.25-12.2号为期一周,25号折腾了一上午BN子账号API token问题,到底还是被BN的统一账户模式坑了下.(感谢社区Dolm的耐心帮助.)</p>
+<h2 id="2FA-需要至少包含其中的两种因素。例如，“密码-动态验证码”是一种常见的-2FA-实现。"><a href="#2FA-需要至少包含其中的两种因素。例如，“密码-动态验证码”是一种常见的-2FA-实现。" class="headerlink" title="2FA 需要至少包含其中的两种因素。例如，“密码+动态验证码”是一种常见的 2FA 实现。"></a>2FA 需要至少包含其中的两种因素。例如，“密码+动态验证码”是一种常见的 2FA 实现。<br></div><a class="article-more button is-small is-size-7" href="/2024/11/28/about_2FA/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-27T03:10:22.000Z" title="2024/11/27 11:10:22">2024-11-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-27T04:38:19.000Z" title="2024/11/27 12:38:19">2024-11-27</time></span><span class="level-item"><a class="link-muted" href="/categories/HummingBot/">HummingBot</a></span><span class="level-item">3 minutes read (About 523 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/27/hummingbot_gateway/">Hummingbot Gateway AMM Middleware</a></p><div class="content"><p>Hummingbot Gateway 是一个 REST API，它公开与各种区块链（钱包、节点和链交互）和去中心化交易所（定价、交易和流动性提供）的连接。<br>它用 Typescript 编写，并利用现有的区块链和 DEX SDK。使用网关的优势在于它提供了一种与编程语言无关的方法来与区块链和 DEX 进行交互。</p></div><a class="article-more button is-small is-size-7" href="/2024/11/27/hummingbot_gateway/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-26T15:10:22.000Z" title="2024/11/26 23:10:22">2024-11-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-26T15:10:22.000Z" title="2024/11/26 23:10:22">2024-11-26</time></span><span class="level-item"><a class="link-muted" href="/categories/HummingBot/">HummingBot</a></span><span class="level-item">7 minutes read (About 1083 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/26/hummingbot_dev_env/">Hummingbot Macos下搭建开发调试环境</a></p><div class="content"><p>HummingBot中文社区组织交易比赛,时间从11.25-12.2号为期一周,25号折腾了一上午BN子账号API token问题,到底还是被BN的统一账户模式坑了下.(感谢社区Dolm的耐心帮助.)</p>
 <p>今天抽空把本地环境部署了下,方便交易策略的开发和调试.</p>
 <p>之前在ubuntu的云主机上运行hummingBot过程比较丝滑,倒没碰到什么大问题;<br>本地是Macos环境，乱七八糟的环境太乱了,过然还是碰到了一些问题,记录下.</p></div><a class="article-more button is-small is-size-7" href="/2024/11/26/hummingbot_dev_env/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-11-15T15:10:22.000Z" title="2024/11/15 23:10:22">2024-11-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-11-15T15:10:22.000Z" title="2024/11/15 23:10:22">2024-11-15</time></span><span class="level-item"><a class="link-muted" href="/categories/HummingBot/">HummingBot</a></span><span class="level-item">2 minutes read (About 281 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/11/15/hummingbot_dashboard/">Hummingbot Dashboard</a></p><div class="content"><p>Hummingbot Dashboard</p>
 <blockquote>
