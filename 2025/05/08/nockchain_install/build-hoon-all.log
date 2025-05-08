@@ -1,0 +1,783 @@
+$ make build-hoon-all
+mkdir -p hoon
+mkdir -p assets
+cargo install --locked --path crates/nockapp/apps/choo --bin choo
+warning: no Cargo.lock file published in choo v0.2.0 (/Users/lichm1/work/nockchain/crates/nockapp/apps/choo)
+  Installing choo v0.2.0 (/Users/lichm1/work/nockchain/crates/nockapp/apps/choo)
+    Updating crates.io index
+    Finished `release` profile [optimized + debuginfo] target(s) in 3.21s
+   Replacing /Users/lichm1/.cargo/bin/choo
+    Replaced package `choo v0.2.0 (/Users/lichm1/work/nockchain/crates/nockapp/apps/choo)` with `choo v0.2.0 (/Users/lichm1/work/nockchain/crates/nockapp/apps/choo)` (executable `choo`)
+echo '%trivial' > hoon/trivial.hoon
+choo --new --arbitrary hoon/trivial.hoon
+I (19:48:09) [cr] kernel::boot: kernel: starting
+I (19:48:09) [cr] kernel::form: No existing state found - initializing fresh state
+I (19:48:09) %boot
+I (19:51:13) %build
+W (19:51:13) [%parsing /Users/lichm1/work/nockchain/hoon/trivial.hoon]
+I (19:51:13) [%parse-cache-miss /Users/lichm1/work/nockchain/hoon/trivial.hoon]
+W (19:51:14) [%build-cache-miss /Users/lichm1/work/nockchain/hoon/trivial.hoon]
+I (19:51:14) took: 9.190458ms
+W (19:51:14) [%build-cache-hit /Users/lichm1/work/nockchain/hoon/trivial.hoon]
+I (19:51:14) %file
+W (19:51:14) "choo: output written successfully to '/Users/lichm1/work/nockchain/out.jam'"
+no panic!
+RUST_LOG=trace choo hoon/apps/dumbnet/outer.hoon hoon
+D (19:51:14) choo: Dependencies directory: "hoon"
+D (19:51:14) choo: Entry file: "hoon/apps/dumbnet/outer.hoon"
+I (19:51:14) [cr] kernel::boot: kernel: starting
+D (19:51:14) [cr] kernel::boot: kernel: pma directory: "/Users/lichm1/.nockapp/choo/pma"
+D (19:51:14) [cr] kernel::boot: kernel: jam buffer paths: "/Users/lichm1/.nockapp/choo/checkpoints/0.chkjam", "/Users/lichm1/.nockapp/choo/checkpoints/1.chkjam"
+I (19:51:14) [cr] kernel::form: Found existing state - restoring from checkpoint
+D (19:51:14) [cr] kernel::checkpoint: Loading checkpoint at: /Users/lichm1/.nockapp/choo/checkpoints/1.chkjam, checksum: 6757ca843f46eca4141d43895fcc02560753331403436edca2f727d2bf8184fe
+D (19:51:14) %choo-choo
+I (19:51:14) no update
+D (19:51:14) registry: Falling back to delay time default, GNORT_DELAY_MILLIS wasn't specified and delay wasn't set in the code.
+D (19:51:14) registry: Falling back to delay time default, GNORT_OBSERVATION_PERIOD_MILLIS wasn't specified and delay wasn't set in the code.
+T (19:51:14) choo: Canonicalizing path: "hoon/apps/dumbnet/outer.hoon"
+D (19:51:14) choo: Canonicalized path: "/Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon"
+T (19:51:14) choo: Canonicalizing path: "hoon"
+D (19:51:14) choo: Canonicalized path: "/Users/lichm1/work/nockchain/hoon"
+D (19:51:14) choo: Path: "/trivial.hoon"
+D (19:51:14) choo: Path: "/dat/stark-config.hoon"
+D (19:51:14) choo: Path: "/dat/constraints.hoon"
+D (19:51:14) choo: Path: "/common/ztd/seven.hoon"
+D (19:51:14) choo: Path: "/common/ztd/six.hoon"
+D (19:51:14) choo: Path: "/common/ztd/four.hoon"
+D (19:51:14) choo: Path: "/common/ztd/two.hoon"
+D (19:51:14) choo: Path: "/common/ztd/one.hoon"
+D (19:51:14) choo: Path: "/common/ztd/three.hoon"
+D (19:51:14) choo: Path: "/common/ztd/eight.hoon"
+D (19:51:14) choo: Path: "/common/ztd/five.hoon"
+D (19:51:14) choo: Path: "/common/nock-common.hoon"
+D (19:51:14) choo: Path: "/common/nock-prover.hoon"
+D (19:51:14) choo: Path: "/common/slip10.hoon"
+D (19:51:14) choo: Path: "/common/wrapper.hoon"
+D (19:51:14) choo: Path: "/common/markdown/types.hoon"
+D (19:51:14) choo: Path: "/common/markdown/markdown.hoon"
+D (19:51:14) choo: Path: "/common/schedule.hoon"
+D (19:51:14) choo: Path: "/common/pow.hoon"
+D (19:51:14) choo: Path: "/common/test.hoon"
+D (19:51:14) choo: Path: "/common/table/compute.hoon"
+D (19:51:14) choo: Path: "/common/table/prover/compute.hoon"
+D (19:51:14) choo: Path: "/common/table/prover/memory.hoon"
+D (19:51:14) choo: Path: "/common/table/memory.hoon"
+D (19:51:14) choo: Path: "/common/table/verifier/compute.hoon"
+D (19:51:14) choo: Path: "/common/table/verifier/memory.hoon"
+D (19:51:14) choo: Path: "/common/nock-verifier.hoon"
+D (19:51:14) choo: Path: "/common/bip39-english.hoon"
+D (19:51:14) choo: Path: "/common/bip39.hoon"
+D (19:51:14) choo: Path: "/common/zoon.hoon"
+D (19:51:14) choo: Path: "/common/tx-engine.hoon"
+D (19:51:14) choo: Path: "/common/zose.hoon"
+D (19:51:14) choo: Path: "/common/zeke.hoon"
+D (19:51:14) choo: Path: "/common/stark/verifier.hoon"
+D (19:51:14) choo: Path: "/common/stark/prover.hoon"
+D (19:51:14) choo: Path: "/test-jams/cue-test.jam"
+D (19:51:14) choo: Path: "/apps/dumbnet/inner.hoon"
+D (19:51:14) choo: Path: "/apps/dumbnet/lib/consensus.hoon"
+D (19:51:14) choo: Path: "/apps/dumbnet/lib/pending.hoon"
+D (19:51:14) choo: Path: "/apps/dumbnet/lib/miner.hoon"
+D (19:51:14) choo: Path: "/apps/dumbnet/lib/types.hoon"
+D (19:51:14) choo: Path: "/apps/dumbnet/lib/derived.hoon"
+D (19:51:14) choo: Path: "/apps/dumbnet/outer.hoon"
+D (19:51:14) choo: Path: "/apps/wallet/wallet.hoon"
+T (19:51:14) choo: Canonicalizing path: "/Users/lichm1/work/nockchain"
+D (19:51:14) choo: Canonicalized path: "/Users/lichm1/work/nockchain"
+D (19:51:14) choo: Output path: "/Users/lichm1/work/nockchain/out.jam"
+D (19:51:14) nockapp: Starting nockapp run
+T (19:51:14) nockapp: Action channel received
+D (19:51:14) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:51:14) [cr] drivers::exit: exit_driver: waiting for effect
+D (19:51:14) [cr] nockapp::driver: Waiting for recv on next effect
+I (19:51:14) %boot
+D (19:51:14) [%hoon-version %138]
+D (19:51:14) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:51:14) [cr] drivers::one_punch: Poke successful
+T (19:51:14) nockapp: Action channel received
+T (19:51:14) nockapp: Write to "/Users/lichm1/.nockapp/choo/checkpoints/0.chkjam" successful, checksum: 7d5a8e7a139cca59af4b4630aaae2d3f90d1c3ce6e7735ddf1db72c19e7215b5, event: 4
+I (19:51:15) %build
+D (19:51:15) "building path: '/Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon'"
+D (19:51:15) [%dir-hash 0v1d.cka2f]
+W (19:51:15) [%parsing /Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon]
+I (19:51:15) [%parse-cache-miss /Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon]
+D (19:51:15) [%parsing /apps/dumbnet/inner.hoon]
+I (19:51:15) [%parse-cache-miss /apps/dumbnet/inner.hoon]
+D (19:51:21) [%parsed /apps/dumbnet/inner.hoon]
+D (19:51:21) [%resolved /apps/dumbnet/inner.hoon]
+D (19:51:21) [%parsing /apps/dumbnet/lib/types.hoon]
+I (19:51:21) [%parse-cache-miss /apps/dumbnet/lib/types.hoon]
+D (19:51:22) [%parsed /apps/dumbnet/lib/types.hoon]
+D (19:51:22) [%resolved /apps/dumbnet/lib/types.hoon]
+D (19:51:22) [%parsing /common/stark/prover.hoon]
+I (19:51:22) [%parse-cache-miss /common/stark/prover.hoon]
+D (19:51:32) [%parsed /common/stark/prover.hoon]
+D (19:51:32) [%resolved /common/stark/prover.hoon]
+D (19:51:32) [%parsing /common/tx-engine.hoon]
+I (19:51:32) [%parse-cache-miss /common/tx-engine.hoon]
+D (19:51:39) [%parsed /common/tx-engine.hoon]
+D (19:51:39) [%resolved /common/tx-engine.hoon]
+D (19:51:39) [%parsing /apps/dumbnet/lib/miner.hoon]
+I (19:51:39) [%parse-cache-miss /apps/dumbnet/lib/miner.hoon]
+D (19:51:41) [%parsed /apps/dumbnet/lib/miner.hoon]
+D (19:51:41) [%resolved /apps/dumbnet/lib/miner.hoon]
+D (19:51:41) [%parsing /apps/dumbnet/lib/pending.hoon]
+I (19:51:41) [%parse-cache-miss /apps/dumbnet/lib/pending.hoon]
+D (19:51:44) [%parsed /apps/dumbnet/lib/pending.hoon]
+D (19:51:44) [%resolved /apps/dumbnet/lib/pending.hoon]
+D (19:51:44) [%parsing /apps/dumbnet/lib/derived.hoon]
+I (19:51:44) [%parse-cache-miss /apps/dumbnet/lib/derived.hoon]
+D (19:51:45) [%parsed /apps/dumbnet/lib/derived.hoon]
+D (19:51:45) [%resolved /apps/dumbnet/lib/derived.hoon]
+D (19:51:45) [%parsing /apps/dumbnet/lib/consensus.hoon]
+I (19:51:45) [%parse-cache-miss /apps/dumbnet/lib/consensus.hoon]
+D (19:51:48) [%parsed /apps/dumbnet/lib/consensus.hoon]
+D (19:51:48) [%resolved /apps/dumbnet/lib/consensus.hoon]
+D (19:51:48) [%parsing /common/pow.hoon]
+I (19:51:48) [%parse-cache-miss /common/pow.hoon]
+D (19:51:49) [%parsed /common/pow.hoon]
+D (19:51:49) [%resolved /common/pow.hoon]
+D (19:51:49) [%parsing /common/nock-verifier.hoon]
+I (19:51:49) [%parse-cache-miss /common/nock-verifier.hoon]
+D (19:51:50) [%parsed /common/nock-verifier.hoon]
+D (19:51:50) [%resolved /common/nock-verifier.hoon]
+D (19:51:50) [%parsing /common/zeke.hoon]
+I (19:51:50) [%parse-cache-miss /common/zeke.hoon]
+D (19:51:50) [%parsed /common/zeke.hoon]
+D (19:51:50) [%resolved /common/zeke.hoon]
+D (19:51:50) [%parsing /common/zoon.hoon]
+I (19:51:50) [%parse-cache-miss /common/zoon.hoon]
+D (19:51:54) [%parsed /common/zoon.hoon]
+D (19:51:54) [%resolved /common/zoon.hoon]
+D (19:51:54) [%parsing /common/wrapper.hoon]
+I (19:51:54) [%parse-cache-miss /common/wrapper.hoon]
+D (19:51:58) [%parsed /common/wrapper.hoon]
+D (19:51:58) [%resolved /common/wrapper.hoon]
+D (19:51:58) [%parsing /common/table/prover/compute.hoon]
+I (19:51:58) [%parse-cache-miss /common/table/prover/compute.hoon]
+D (19:52:03) [%parsed /common/table/prover/compute.hoon]
+D (19:52:03) [%resolved /common/table/prover/compute.hoon]
+D (19:52:03) [%parsing /common/table/prover/memory.hoon]
+I (19:52:03) [%parse-cache-miss /common/table/prover/memory.hoon]
+D (19:52:08) [%parsed /common/table/prover/memory.hoon]
+D (19:52:08) [%resolved /common/table/prover/memory.hoon]
+D (19:52:08) [%parsing /common/nock-common.hoon]
+I (19:52:08) [%parse-cache-miss /common/nock-common.hoon]
+D (19:52:09) [%parsed /common/nock-common.hoon]
+D (19:52:09) [%resolved /common/nock-common.hoon]
+D (19:52:09) [%parsing /common/schedule.hoon]
+I (19:52:09) [%parse-cache-miss /common/schedule.hoon]
+D (19:52:10) [%parsed /common/schedule.hoon]
+D (19:52:10) [%resolved /common/schedule.hoon]
+D (19:52:10) [%parsing /common/nock-prover.hoon]
+I (19:52:10) [%parse-cache-miss /common/nock-prover.hoon]
+D (19:52:11) [%parsed /common/nock-prover.hoon]
+D (19:52:11) [%resolved /common/nock-prover.hoon]
+D (19:52:11) [%parsing /common/stark/verifier.hoon]
+I (19:52:11) [%parse-cache-miss /common/stark/verifier.hoon]
+D (19:52:18) [%parsed /common/stark/verifier.hoon]
+D (19:52:18) [%resolved /common/stark/verifier.hoon]
+D (19:52:18) [%parsing /dat/stark-config.hoon]
+I (19:52:18) [%parse-cache-miss /dat/stark-config.hoon]
+D (19:52:18) [%parsed /dat/stark-config.hoon]
+D (19:52:18) [%resolved /dat/stark-config.hoon]
+D (19:52:18) [%parsing /common/ztd/eight.hoon]
+I (19:52:18) [%parse-cache-miss /common/ztd/eight.hoon]
+D (19:52:23) [%parsed /common/ztd/eight.hoon]
+D (19:52:23) [%resolved /common/ztd/eight.hoon]
+D (19:52:23) [%parsing /common/table/compute.hoon]
+I (19:52:23) [%parse-cache-miss /common/table/compute.hoon]
+D (19:52:25) [%parsed /common/table/compute.hoon]
+D (19:52:25) [%resolved /common/table/compute.hoon]
+D (19:52:25) [%parsing /common/table/verifier/compute.hoon]
+I (19:52:25) [%parse-cache-miss /common/table/verifier/compute.hoon]
+D (19:53:03) [%parsed /common/table/verifier/compute.hoon]
+D (19:53:03) [%resolved /common/table/verifier/compute.hoon]
+D (19:53:03) [%parsing /common/table/memory.hoon]
+I (19:53:03) [%parse-cache-miss /common/table/memory.hoon]
+D (19:53:05) [%parsed /common/table/memory.hoon]
+D (19:53:05) [%resolved /common/table/memory.hoon]
+D (19:53:05) [%parsing /common/table/verifier/memory.hoon]
+I (19:53:05) [%parse-cache-miss /common/table/verifier/memory.hoon]
+D (19:53:09) [%parsed /common/table/verifier/memory.hoon]
+D (19:53:09) [%resolved /common/table/verifier/memory.hoon]
+D (19:53:09) [%parsing /dat/constraints.hoon]
+I (19:53:09) [%parse-cache-miss /dat/constraints.hoon]
+D (19:53:11) [%parsed /dat/constraints.hoon]
+D (19:53:11) [%resolved /dat/constraints.hoon]
+D (19:53:11) [%parsing /common/ztd/seven.hoon]
+I (19:53:11) [%parse-cache-miss /common/ztd/seven.hoon]
+D (19:53:15) [%parsed /common/ztd/seven.hoon]
+D (19:53:15) [%resolved /common/ztd/seven.hoon]
+D (19:53:15) [%parsing /common/ztd/six.hoon]
+I (19:53:15) [%parse-cache-miss /common/ztd/six.hoon]
+D (19:53:17) [%parsed /common/ztd/six.hoon]
+D (19:53:17) [%resolved /common/ztd/six.hoon]
+D (19:53:17) [%parsing /common/ztd/five.hoon]
+I (19:53:17) [%parse-cache-miss /common/ztd/five.hoon]
+D (19:53:22) [%parsed /common/ztd/five.hoon]
+D (19:53:22) [%resolved /common/ztd/five.hoon]
+D (19:53:22) [%parsing /common/ztd/four.hoon]
+I (19:53:22) [%parse-cache-miss /common/ztd/four.hoon]
+D (19:53:24) [%parsed /common/ztd/four.hoon]
+D (19:53:24) [%resolved /common/ztd/four.hoon]
+D (19:53:24) [%parsing /common/ztd/three.hoon]
+I (19:53:24) [%parse-cache-miss /common/ztd/three.hoon]
+D (19:53:37) [%parsed /common/ztd/three.hoon]
+D (19:53:37) [%resolved /common/ztd/three.hoon]
+D (19:53:37) [%parsing /common/ztd/two.hoon]
+I (19:53:37) [%parse-cache-miss /common/ztd/two.hoon]
+D (19:53:47) [%parsed /common/ztd/two.hoon]
+D (19:53:47) [%resolved /common/ztd/two.hoon]
+D (19:53:47) [%parsing /common/ztd/one.hoon]
+I (19:53:47) [%parse-cache-miss /common/ztd/one.hoon]
+D (19:53:54) [%parsed /common/ztd/one.hoon]
+D (19:53:54) [%resolved /common/ztd/one.hoon]
+D (19:53:54) [%building-merk-dag-for {[i=~.common t=/ztd/one.hoon] [i=~.common t=/ztd/six.hoon] [i=~.dat t=/constraints.hoon] [i=~.common t=/ztd/five.hoon] [i=~.common t=/wrapper.hoon] [i=~.dat t=/stark-config.hoon] [i=~.common t=/ztd/four.hoon] [i=~.common t=/tx-engine.hoon] [i=~.apps t=/dumbnet/lib/derived.hoon] [i=~.common t=/table/compute.hoon] [i=~.common t=/ztd/two.hoon] [i=~.common t=/pow.hoon] [i=~.common t=/nock-common.hoon] [i=~.common t=/stark/prover.hoon] [i=~.common t=/table/verifier/memory.hoon] [i=~.common t=/ztd/eight.hoon] [i=~.common t=/table/prover/compute.hoon] [i=~.common t=/zoon.hoon] [i=~.apps t=/dumbnet/lib/consensus.hoon] [i=~.common t=/ztd/three.hoon] [i=~.common t=/table/prover/memory.hoon] [i=~.apps t=/dumbnet/lib/pending.hoon] [i=~.common t=/nock-prover.hoon] [i=~.common t=/table/verifier/compute.hoon] [i=~.Users t=/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon] [i=~.common t=/schedule.hoon] [i=~.apps t=/dumbnet/inner.hoon] [i=~.common t=/ztd/seven.hoon] [i=~.common t=/table/memory.hoon] [i=~.apps t=/dumbnet/lib/types.hoon] [i=~.common t=/zeke.hoon] [i=~.common t=/stark/verifier.hoon] [i=~.common t=/nock-verifier.hoon] [i=~.apps t=/dumbnet/lib/miner.hoon]}]
+D (19:53:54) [%compiling-target /Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon]
+W (19:53:54) [%build-cache-miss /common/schedule.hoon]
+I (19:53:55) took: 208.076458ms
+W (19:53:55) [%build-cache-miss /common/wrapper.hoon]
+I (19:53:55) took: 286.00825ms
+W (19:53:55) [%build-cache-miss /common/ztd/one.hoon]
+I (19:53:58) took: 3.1349585s
+W (19:53:58) [%build-cache-miss /common/ztd/two.hoon]
+W (19:53:58) [%grabbing-dep /common/ztd/one.hoon]
+W (19:53:58) [%attaching-face [~ %ztd-one]]
+I (19:54:04) took: 5.795855s
+W (19:54:04) [%build-cache-miss /common/ztd/three.hoon]
+W (19:54:04) [%grabbing-dep /common/ztd/two.hoon]
+W (19:54:04) [%attaching-face [~ %ztd-two]]
+I (19:54:19) took: 14.86593s
+W (19:54:19) [%build-cache-miss /common/ztd/four.hoon]
+W (19:54:19) [%grabbing-dep /common/ztd/three.hoon]
+W (19:54:19) [%attaching-face [~ %ztd-three]]
+I (19:54:20) took: 1.224101334s
+W (19:54:20) [%build-cache-miss /common/ztd/five.hoon]
+W (19:54:20) [%grabbing-dep /common/ztd/four.hoon]
+W (19:54:20) [%attaching-face [~ %ztd-four]]
+I (19:54:23) took: 3.164080875s
+W (19:54:23) [%build-cache-miss /common/ztd/six.hoon]
+W (19:54:23) [%grabbing-dep /common/ztd/five.hoon]
+W (19:54:23) [%attaching-face [~ %ztd-five]]
+I (19:54:25) took: 1.670933583s
+W (19:54:25) [%build-cache-miss /common/ztd/seven.hoon]
+W (19:54:25) [%grabbing-dep /common/ztd/six.hoon]
+W (19:54:25) [%attaching-face [~ %ztd-six]]
+I (19:54:31) took: 5.738692s
+W (19:54:31) [%build-cache-miss /common/ztd/eight.hoon]
+W (19:54:31) [%grabbing-dep /common/ztd/seven.hoon]
+W (19:54:31) [%attaching-face [~ %ztd-seven]]
+I (19:54:36) took: 5.229823333s
+W (19:54:36) [%build-cache-miss /common/zeke.hoon]
+W (19:54:36) [%grabbing-dep /common/ztd/eight.hoon]
+W (19:54:36) [%attaching-face [~ %ztd-eight]]
+I (19:54:36) took: 83.187459ms
+W (19:54:36) [%build-cache-miss /common/table/memory.hoon]
+W (19:54:36) [%grabbing-dep /common/zeke.hoon]
+W (19:54:36) [%attaching-face ~]
+I (19:54:37) took: 731.231458ms
+W (19:54:37) [%build-cache-miss /common/zoon.hoon]
+W (19:54:37) [%grabbing-dep /common/zeke.hoon]
+W (19:54:37) [%attaching-face [~ %z]]
+I (19:54:38) took: 950.227042ms
+W (19:54:38) [%build-cache-miss /common/table/compute.hoon]
+W (19:54:38) [%grabbing-dep /common/zeke.hoon]
+W (19:54:38) [%attaching-face ~]
+I (19:54:38) took: 522.528459ms
+W (19:54:38) [%build-cache-miss /common/table/verifier/compute.hoon]
+W (19:54:38) [%grabbing-dep /common/table/compute.hoon]
+W (19:54:38) [%attaching-face [~ %common]]
+W (19:54:38) [%grabbing-dep /common/zeke.hoon]
+W (19:54:38) [%attaching-face ~]
+I (19:54:43) took: 4.949704458s
+W (19:54:43) [%build-cache-miss /common/table/verifier/memory.hoon]
+W (19:54:43) [%grabbing-dep /common/table/memory.hoon]
+W (19:54:43) [%attaching-face [~ %common]]
+W (19:54:43) [%grabbing-dep /common/zeke.hoon]
+W (19:54:43) [%attaching-face ~]
+I (19:54:45) took: 1.758327375s
+W (19:54:45) [%build-cache-miss /common/table/prover/memory.hoon]
+W (19:54:45) [%grabbing-dep /common/table/memory.hoon]
+W (19:54:45) [%attaching-face [~ %common]]
+W (19:54:45) [%grabbing-dep /common/table/verifier/memory.hoon]
+W (19:54:45) [%attaching-face [~ %verifier-memory]]
+W (19:54:45) [%grabbing-dep /common/zeke.hoon]
+W (19:54:45) [%attaching-face ~]
+I (19:54:48) took: 3.155805333s
+W (19:54:48) [%build-cache-miss /common/table/prover/compute.hoon]
+W (19:54:48) [%grabbing-dep /common/table/compute.hoon]
+W (19:54:48) [%attaching-face [~ %common]]
+W (19:54:48) [%grabbing-dep /common/table/verifier/compute.hoon]
+W (19:54:48) [%attaching-face [~ %verifier-compute]]
+W (19:54:48) [%grabbing-dep /common/zeke.hoon]
+W (19:54:48) [%attaching-face ~]
+I (19:54:51) took: 3.2810275s
+W (19:54:51) [%build-cache-miss /common/nock-common.hoon]
+W (19:54:51) [%grabbing-dep /common/table/verifier/compute.hoon]
+W (19:54:51) [%attaching-face [~ %compute-table]]
+W (19:54:51) [%grabbing-dep /common/table/verifier/memory.hoon]
+W (19:54:51) [%attaching-face [~ %memory-table]]
+W (19:54:51) [%grabbing-dep /common/zeke.hoon]
+W (19:54:51) [%attaching-face ~]
+I (19:54:54) took: 2.250564208s
+W (19:54:54) [%build-cache-miss /common/stark/verifier.hoon]
+W (19:54:54) [%grabbing-dep /common/nock-common.hoon]
+W (19:54:54) [%attaching-face [~ %nock-common]]
+W (19:54:54) [%grabbing-dep /common/zeke.hoon]
+W (19:54:54) [%attaching-face ~]
+I (19:54:58) took: 4.63830725s
+W (19:54:58) [%build-cache-miss /common/stark/prover.hoon]
+W (19:54:58) [%grabbing-dep /common/table/prover/compute.hoon]
+W (19:54:58) [%attaching-face [~ %compute-table]]
+W (19:54:58) [%grabbing-dep /common/table/prover/memory.hoon]
+W (19:54:58) [%attaching-face [~ %memory-table]]
+W (19:54:58) [%grabbing-dep /common/zeke.hoon]
+W (19:54:58) [%attaching-face ~]
+W (19:54:58) [%grabbing-dep /common/nock-common.hoon]
+W (19:54:58) [%attaching-face [~ %nock-common]]
+I (19:55:01) took: 3.300137041s
+W (19:55:02) [%build-cache-miss /dat/constraints.hoon]
+W (19:55:02) [%grabbing-dep /common/zeke.hoon]
+W (19:55:02) [%attaching-face [~ %z]]
+W (19:55:02) [%grabbing-dep /common/nock-common.hoon]
+W (19:55:02) [%attaching-face [~ %nock-common]]
+I (19:55:02) "node /dat/constraints.hoon is eval, kicking"
+I (19:55:02) %computing-preprocess-data
+I (19:56:17) took: 75.878696125s
+W (19:56:17) [%build-cache-miss /common/tx-engine.hoon]
+W (19:56:17) [%grabbing-dep /common/stark/prover.hoon]
+W (19:56:17) [%attaching-face [~ %sp]]
+W (19:56:17) [%grabbing-dep /common/schedule.hoon]
+W (19:56:17) [%attaching-face [~ %emission]]
+W (19:56:17) [%grabbing-dep /common/zeke.hoon]
+W (19:56:17) [%attaching-face ~]
+W (19:56:17) [%grabbing-dep /common/zoon.hoon]
+W (19:56:17) [%attaching-face ~]
+I (19:56:31) took: 13.708297375s
+W (19:56:31) [%build-cache-miss /dat/stark-config.hoon]
+W (19:56:31) [%grabbing-dep /common/zeke.hoon]
+W (19:56:31) [%attaching-face [~ %z]]
+W (19:56:31) [%grabbing-dep /dat/constraints.hoon]
+W (19:56:31) [%attaching-face [~ %constraints-0]]
+I (19:56:31) "node /dat/stark-config.hoon is eval, kicking"
+I (19:56:31) took: 124.838083ms
+W (19:56:31) [%build-cache-miss /common/nock-verifier.hoon]
+W (19:56:31) [%grabbing-dep /common/zeke.hoon]
+W (19:56:31) [%attaching-face ~]
+W (19:56:31) [%grabbing-dep /common/stark/verifier.hoon]
+W (19:56:31) [%attaching-face [~ %stark-verifier]]
+W (19:56:31) [%grabbing-dep /common/nock-common.hoon]
+W (19:56:31) [%attaching-face [~ %common]]
+W (19:56:31) [%grabbing-dep /dat/stark-config.hoon]
+W (19:56:31) [%attaching-face [~ %sc]]
+I (19:56:31) took: 177.468458ms
+W (19:56:31) [%build-cache-miss /apps/dumbnet/lib/types.hoon]
+W (19:56:32) [%grabbing-dep /common/zoon.hoon]
+W (19:56:32) [%attaching-face ~]
+W (19:56:32) [%grabbing-dep /common/wrapper.hoon]
+W (19:56:32) [%attaching-face [~ %w]]
+W (19:56:32) [%grabbing-dep /common/tx-engine.hoon]
+W (19:56:32) [%attaching-face [~ %dt]]
+I (19:56:33) took: 1.788628958s
+W (19:56:33) [%build-cache-miss /common/nock-prover.hoon]
+W (19:56:33) [%grabbing-dep /common/zeke.hoon]
+W (19:56:33) [%attaching-face ~]
+W (19:56:33) [%grabbing-dep /common/stark/prover.hoon]
+W (19:56:33) [%attaching-face [~ %stark-prover]]
+W (19:56:33) [%grabbing-dep /common/nock-common.hoon]
+W (19:56:33) [%attaching-face [~ %common]]
+W (19:56:33) [%grabbing-dep /dat/stark-config.hoon]
+W (19:56:33) [%attaching-face [~ %sc]]
+I (19:56:33) took: 184.883792ms
+W (19:56:33) [%build-cache-miss /apps/dumbnet/lib/miner.hoon]
+W (19:56:34) [%grabbing-dep /apps/dumbnet/lib/types.hoon]
+W (19:56:34) [%attaching-face [~ %dk]]
+W (19:56:34) [%grabbing-dep /common/stark/prover.hoon]
+W (19:56:34) [%attaching-face [~ %sp]]
+W (19:56:34) [%grabbing-dep /common/tx-engine.hoon]
+W (19:56:34) [%attaching-face [~ %dumb-transact]]
+W (19:56:34) [%grabbing-dep /common/zoon.hoon]
+W (19:56:34) [%attaching-face ~]
+I (19:56:35) took: 1.376493291s
+W (19:56:35) [%build-cache-miss /common/pow.hoon]
+W (19:56:35) [%grabbing-dep /common/stark/prover.hoon]
+W (19:56:35) [%attaching-face [~ %sp]]
+W (19:56:35) [%grabbing-dep /common/nock-prover.hoon]
+W (19:56:35) [%attaching-face [~ %np]]
+W (19:56:35) [%grabbing-dep /common/zeke.hoon]
+W (19:56:35) [%attaching-face ~]
+I (19:56:35) took: 218.593ms
+W (19:56:35) [%build-cache-miss /apps/dumbnet/lib/derived.hoon]
+W (19:56:35) [%grabbing-dep /apps/dumbnet/lib/types.hoon]
+W (19:56:35) [%attaching-face [~ %dk]]
+W (19:56:35) [%grabbing-dep /common/tx-engine.hoon]
+W (19:56:35) [%attaching-face [~ %dumb-transact]]
+W (19:56:35) [%grabbing-dep /common/zoon.hoon]
+W (19:56:35) [%attaching-face ~]
+I (19:56:36) took: 714.313667ms
+W (19:56:36) [%build-cache-miss /apps/dumbnet/lib/consensus.hoon]
+W (19:56:36) [%grabbing-dep /apps/dumbnet/lib/types.hoon]
+W (19:56:36) [%attaching-face [~ %dk]]
+W (19:56:36) [%grabbing-dep /common/stark/prover.hoon]
+W (19:56:36) [%attaching-face [~ %sp]]
+W (19:56:36) [%grabbing-dep /common/pow.hoon]
+W (19:56:36) [%attaching-face [~ %mine]]
+W (19:56:36) [%grabbing-dep /common/tx-engine.hoon]
+W (19:56:36) [%attaching-face [~ %dumb-transact]]
+W (19:56:36) [%grabbing-dep /common/zoon.hoon]
+W (19:56:36) [%attaching-face ~]
+I (19:56:40) took: 4.105745417s
+W (19:56:40) [%build-cache-miss /apps/dumbnet/lib/pending.hoon]
+W (19:56:40) [%grabbing-dep /apps/dumbnet/lib/consensus.hoon]
+W (19:56:40) [%attaching-face [~ %dcon]]
+W (19:56:40) [%grabbing-dep /apps/dumbnet/lib/types.hoon]
+W (19:56:40) [%attaching-face [~ %dk]]
+W (19:56:40) [%grabbing-dep /common/tx-engine.hoon]
+W (19:56:40) [%attaching-face [~ %dumb-transact]]
+W (19:56:40) [%grabbing-dep /common/zoon.hoon]
+W (19:56:40) [%attaching-face ~]
+I (19:56:44) took: 4.345323375s
+W (19:56:44) [%build-cache-miss /apps/dumbnet/inner.hoon]
+W (19:56:44) [%grabbing-dep /apps/dumbnet/lib/types.hoon]
+W (19:56:44) [%attaching-face [~ %dk]]
+W (19:56:44) [%grabbing-dep /common/stark/prover.hoon]
+W (19:56:44) [%attaching-face [~ %sp]]
+W (19:56:44) [%grabbing-dep /common/tx-engine.hoon]
+W (19:56:44) [%attaching-face [~ %c-transact]]
+W (19:56:44) [%grabbing-dep /apps/dumbnet/lib/miner.hoon]
+W (19:56:44) [%attaching-face [~ %dumb-miner]]
+W (19:56:44) [%grabbing-dep /apps/dumbnet/lib/pending.hoon]
+W (19:56:44) [%attaching-face [~ %dumb-pending]]
+W (19:56:44) [%grabbing-dep /apps/dumbnet/lib/derived.hoon]
+W (19:56:44) [%attaching-face [~ %dumb-derived]]
+W (19:56:44) [%grabbing-dep /apps/dumbnet/lib/consensus.hoon]
+W (19:56:44) [%attaching-face [~ %dumb-consensus]]
+W (19:56:44) [%grabbing-dep /common/pow.hoon]
+W (19:56:44) [%attaching-face [~ %mine]]
+W (19:56:44) [%grabbing-dep /common/nock-verifier.hoon]
+W (19:56:44) [%attaching-face [~ %nv]]
+W (19:56:44) [%grabbing-dep /common/zeke.hoon]
+W (19:56:44) [%attaching-face [~ %zeke]]
+W (19:56:44) [%grabbing-dep /common/zoon.hoon]
+W (19:56:44) [%attaching-face ~]
+W (19:56:44) [%grabbing-dep /common/wrapper.hoon]
+W (19:56:44) [%attaching-face ~]
+I (19:56:49) took: 4.544985042s
+W (19:56:49) [%build-cache-miss /Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon]
+W (19:56:49) [%grabbing-dep /apps/dumbnet/inner.hoon]
+W (19:56:49) [%attaching-face [~ %dumb]]
+I (19:56:49) took: 140.795875ms
+W (19:56:49) [%build-cache-hit /Users/lichm1/work/nockchain/hoon/apps/dumbnet/outer.hoon]
+T (19:56:49) "choo: build succeeded, sending out write effect"
+D (19:56:49) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:56:49) [cr] drivers::one_punch: Poke successful
+D (19:56:49) [cr] drivers::file: file driver: writing 3899128 bytes to: /Users/lichm1/work/nockchain/out.jam
+D (19:56:49) [cr] nockapp::driver: Waiting for recv on next effect
+T (19:56:50) nockapp: Action channel received
+T (19:56:50) nockapp: Write to "/Users/lichm1/.nockapp/choo/checkpoints/1.chkjam" successful, checksum: 9640760b6e5cf46b7041823641a943b1bea53bab7b719c01bbe0e285606935e4, event: 5
+I (19:56:50) %file
+W (19:56:50) "choo: output written successfully to '/Users/lichm1/work/nockchain/out.jam'"
+D (19:56:50) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:56:50) nockapp: Exit signal received
+D (19:56:50) nockapp: Exit request received, waiting for save checkpoint with event_num 6 (code 0)
+D (19:56:50) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:56:50) [cr] nockapp::driver: Waiting for recv on next effect
+T (19:56:51) nockapp: Write to "/Users/lichm1/.nockapp/choo/checkpoints/0.chkjam" successful, checksum: 93c732c0a82a8d5091a147e2b93af725968323aaccb18204b5f3f1940b0e9b0d, event: 6
+D (19:56:51) nockapp: Save event_num reached, finishing with code 0
+D (19:56:51) nockapp: Sending shutdown result
+D (19:56:51) nockapp: Shutdown channel received
+D (19:56:51) nockapp: Shutdown triggered, exiting
+D (19:56:51) nockapp: Awaiting serf stop
+D (19:56:51) [cr] kernel::form: Serf finished
+D (19:56:51) nockapp: Joining serf thread
+D (19:56:51) nockapp: Serf thread joined
+no panic!
+mv out.jam assets/dumb.jam
+RUST_LOG=trace choo hoon/apps/wallet/wallet.hoon hoon
+D (19:56:51) choo: Dependencies directory: "hoon"
+D (19:56:51) choo: Entry file: "hoon/apps/wallet/wallet.hoon"
+I (19:56:51) [cr] kernel::boot: kernel: starting
+D (19:56:51) [cr] kernel::boot: kernel: pma directory: "/Users/lichm1/.nockapp/choo/pma"
+D (19:56:51) [cr] kernel::boot: kernel: jam buffer paths: "/Users/lichm1/.nockapp/choo/checkpoints/0.chkjam", "/Users/lichm1/.nockapp/choo/checkpoints/1.chkjam"
+I (19:56:51) [cr] kernel::form: Found existing state - restoring from checkpoint
+D (19:56:51) [cr] kernel::checkpoint: Loading checkpoint at: /Users/lichm1/.nockapp/choo/checkpoints/0.chkjam, checksum: 93c732c0a82a8d5091a147e2b93af725968323aaccb18204b5f3f1940b0e9b0d
+D (19:56:52) %choo-choo
+I (19:56:52) no update
+D (19:56:53) registry: Falling back to delay time default, GNORT_DELAY_MILLIS wasn't specified and delay wasn't set in the code.
+D (19:56:53) registry: Falling back to delay time default, GNORT_OBSERVATION_PERIOD_MILLIS wasn't specified and delay wasn't set in the code.
+T (19:56:53) choo: Canonicalizing path: "hoon/apps/wallet/wallet.hoon"
+D (19:56:53) choo: Canonicalized path: "/Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon"
+T (19:56:53) choo: Canonicalizing path: "hoon"
+D (19:56:53) choo: Canonicalized path: "/Users/lichm1/work/nockchain/hoon"
+D (19:56:53) choo: Path: "/trivial.hoon"
+D (19:56:53) choo: Path: "/dat/stark-config.hoon"
+D (19:56:53) choo: Path: "/dat/constraints.hoon"
+D (19:56:53) choo: Path: "/common/ztd/seven.hoon"
+D (19:56:53) choo: Path: "/common/ztd/six.hoon"
+D (19:56:53) choo: Path: "/common/ztd/four.hoon"
+D (19:56:53) choo: Path: "/common/ztd/two.hoon"
+D (19:56:53) choo: Path: "/common/ztd/one.hoon"
+D (19:56:53) choo: Path: "/common/ztd/three.hoon"
+D (19:56:53) choo: Path: "/common/ztd/eight.hoon"
+D (19:56:53) choo: Path: "/common/ztd/five.hoon"
+D (19:56:53) choo: Path: "/common/nock-common.hoon"
+D (19:56:53) choo: Path: "/common/nock-prover.hoon"
+D (19:56:53) choo: Path: "/common/slip10.hoon"
+D (19:56:53) choo: Path: "/common/wrapper.hoon"
+D (19:56:53) choo: Path: "/common/markdown/types.hoon"
+D (19:56:53) choo: Path: "/common/markdown/markdown.hoon"
+D (19:56:53) choo: Path: "/common/schedule.hoon"
+D (19:56:53) choo: Path: "/common/pow.hoon"
+D (19:56:53) choo: Path: "/common/test.hoon"
+D (19:56:53) choo: Path: "/common/table/compute.hoon"
+D (19:56:53) choo: Path: "/common/table/prover/compute.hoon"
+D (19:56:53) choo: Path: "/common/table/prover/memory.hoon"
+D (19:56:53) choo: Path: "/common/table/memory.hoon"
+D (19:56:53) choo: Path: "/common/table/verifier/compute.hoon"
+D (19:56:53) choo: Path: "/common/table/verifier/memory.hoon"
+D (19:56:53) choo: Path: "/common/nock-verifier.hoon"
+D (19:56:53) choo: Path: "/common/bip39-english.hoon"
+D (19:56:53) choo: Path: "/common/bip39.hoon"
+D (19:56:53) choo: Path: "/common/zoon.hoon"
+D (19:56:53) choo: Path: "/common/tx-engine.hoon"
+D (19:56:53) choo: Path: "/common/zose.hoon"
+D (19:56:53) choo: Path: "/common/zeke.hoon"
+D (19:56:53) choo: Path: "/common/stark/verifier.hoon"
+D (19:56:53) choo: Path: "/common/stark/prover.hoon"
+D (19:56:53) choo: Path: "/test-jams/cue-test.jam"
+D (19:56:53) choo: Path: "/apps/dumbnet/inner.hoon"
+D (19:56:53) choo: Path: "/apps/dumbnet/lib/consensus.hoon"
+D (19:56:53) choo: Path: "/apps/dumbnet/lib/pending.hoon"
+D (19:56:53) choo: Path: "/apps/dumbnet/lib/miner.hoon"
+D (19:56:53) choo: Path: "/apps/dumbnet/lib/types.hoon"
+D (19:56:53) choo: Path: "/apps/dumbnet/lib/derived.hoon"
+D (19:56:53) choo: Path: "/apps/dumbnet/outer.hoon"
+D (19:56:53) choo: Path: "/apps/wallet/wallet.hoon"
+T (19:56:53) choo: Canonicalizing path: "/Users/lichm1/work/nockchain"
+D (19:56:53) choo: Canonicalized path: "/Users/lichm1/work/nockchain"
+D (19:56:53) choo: Output path: "/Users/lichm1/work/nockchain/out.jam"
+D (19:56:53) nockapp: Starting nockapp run
+T (19:56:53) nockapp: Action channel received
+D (19:56:53) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:56:53) [cr] drivers::exit: exit_driver: waiting for effect
+D (19:56:53) [cr] nockapp::driver: Waiting for recv on next effect
+I (19:56:53) %boot
+D (19:56:53) [%hoon-version %138]
+D (19:56:53) [cr] nockapp::driver: Waiting for recv on next effect
+D (19:56:53) [cr] drivers::one_punch: Poke successful
+T (19:56:53) nockapp: Action channel received
+T (19:56:53) nockapp: Write to "/Users/lichm1/.nockapp/choo/checkpoints/1.chkjam" successful, checksum: a1190f4aab11ef2cec3a6dad25085f39227ccef8fa05295ece2ce64946b33a74, event: 7
+I (19:56:53) %build
+D (19:56:53) "building path: '/Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon'"
+D (19:56:53) [%dir-hash 0v1d.cka2f]
+W (19:56:53) [%parsing /Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon]
+I (19:56:53) [%parse-cache-miss /Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon]
+D (19:57:06) [%parsing /common/bip39.hoon]
+I (19:57:06) [%parse-cache-miss /common/bip39.hoon]
+D (19:57:07) [%parsed /common/bip39.hoon]
+D (19:57:07) [%resolved /common/bip39.hoon]
+D (19:57:07) [%parsing /common/slip10.hoon]
+I (19:57:07) [%parse-cache-miss /common/slip10.hoon]
+D (19:57:08) [%parsed /common/slip10.hoon]
+D (19:57:08) [%resolved /common/slip10.hoon]
+D (19:57:08) [%parsing /common/markdown/types.hoon]
+I (19:57:08) [%parse-cache-miss /common/markdown/types.hoon]
+D (19:57:10) [%parsed /common/markdown/types.hoon]
+D (19:57:10) [%resolved /common/markdown/types.hoon]
+D (19:57:10) [%parsing /common/markdown/markdown.hoon]
+I (19:57:10) [%parse-cache-miss /common/markdown/markdown.hoon]
+D (19:57:20) [%parsed /common/markdown/markdown.hoon]
+D (19:57:20) [%resolved /common/markdown/markdown.hoon]
+D (19:57:20) [%parsing /common/tx-engine.hoon]
+I (19:57:20) [%parse-cache-hit /common/tx-engine.hoon]
+D (19:57:20) [%parsed /common/tx-engine.hoon]
+D (19:57:20) [%resolved /common/tx-engine.hoon]
+D (19:57:20) [%parsing /common/zeke.hoon]
+I (19:57:20) [%parse-cache-hit /common/zeke.hoon]
+D (19:57:20) [%parsed /common/zeke.hoon]
+D (19:57:20) [%resolved /common/zeke.hoon]
+D (19:57:20) [%parsing /common/zoon.hoon]
+I (19:57:20) [%parse-cache-hit /common/zoon.hoon]
+D (19:57:20) [%parsed /common/zoon.hoon]
+D (19:57:20) [%resolved /common/zoon.hoon]
+D (19:57:20) [%parsing /apps/dumbnet/lib/types.hoon]
+I (19:57:20) [%parse-cache-hit /apps/dumbnet/lib/types.hoon]
+D (19:57:20) [%parsed /apps/dumbnet/lib/types.hoon]
+D (19:57:20) [%resolved /apps/dumbnet/lib/types.hoon]
+D (19:57:20) [%parsing /common/zose.hoon]
+I (19:57:20) [%parse-cache-miss /common/zose.hoon]
+D (19:57:56) [%parsed /common/zose.hoon]
+D (19:57:56) [%resolved /common/zose.hoon]
+D (19:57:56) [%parsing /common/wrapper.hoon]
+I (19:57:56) [%parse-cache-hit /common/wrapper.hoon]
+D (19:57:56) [%parsed /common/wrapper.hoon]
+D (19:57:56) [%resolved /common/wrapper.hoon]
+D (19:57:56) [%parsing /common/bip39-english.hoon]
+I (19:57:56) [%parse-cache-miss /common/bip39-english.hoon]
+D (19:58:00) [%parsed /common/bip39-english.hoon]
+D (19:58:00) [%resolved /common/bip39-english.hoon]
+D (19:58:00) [%parsing /common/stark/prover.hoon]
+I (19:58:00) [%parse-cache-hit /common/stark/prover.hoon]
+D (19:58:00) [%parsed /common/stark/prover.hoon]
+D (19:58:00) [%resolved /common/stark/prover.hoon]
+D (19:58:00) [%parsing /common/schedule.hoon]
+I (19:58:00) [%parse-cache-hit /common/schedule.hoon]
+D (19:58:00) [%parsed /common/schedule.hoon]
+D (19:58:00) [%resolved /common/schedule.hoon]
+D (19:58:00) [%parsing /common/ztd/eight.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/eight.hoon]
+D (19:58:00) [%parsed /common/ztd/eight.hoon]
+D (19:58:00) [%resolved /common/ztd/eight.hoon]
+D (19:58:00) [%parsing /common/table/prover/compute.hoon]
+I (19:58:00) [%parse-cache-hit /common/table/prover/compute.hoon]
+D (19:58:00) [%parsed /common/table/prover/compute.hoon]
+D (19:58:00) [%resolved /common/table/prover/compute.hoon]
+D (19:58:00) [%parsing /common/table/prover/memory.hoon]
+I (19:58:00) [%parse-cache-hit /common/table/prover/memory.hoon]
+D (19:58:00) [%parsed /common/table/prover/memory.hoon]
+D (19:58:00) [%resolved /common/table/prover/memory.hoon]
+D (19:58:00) [%parsing /common/nock-common.hoon]
+I (19:58:00) [%parse-cache-hit /common/nock-common.hoon]
+D (19:58:00) [%parsed /common/nock-common.hoon]
+D (19:58:00) [%resolved /common/nock-common.hoon]
+D (19:58:00) [%parsing /common/ztd/seven.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/seven.hoon]
+D (19:58:00) [%parsed /common/ztd/seven.hoon]
+D (19:58:00) [%resolved /common/ztd/seven.hoon]
+D (19:58:00) [%parsing /common/table/compute.hoon]
+I (19:58:00) [%parse-cache-hit /common/table/compute.hoon]
+D (19:58:00) [%parsed /common/table/compute.hoon]
+D (19:58:00) [%resolved /common/table/compute.hoon]
+D (19:58:00) [%parsing /common/table/verifier/compute.hoon]
+I (19:58:00) [%parse-cache-hit /common/table/verifier/compute.hoon]
+D (19:58:00) [%parsed /common/table/verifier/compute.hoon]
+D (19:58:00) [%resolved /common/table/verifier/compute.hoon]
+D (19:58:00) [%parsing /common/table/memory.hoon]
+I (19:58:00) [%parse-cache-hit /common/table/memory.hoon]
+D (19:58:00) [%parsed /common/table/memory.hoon]
+D (19:58:00) [%resolved /common/table/memory.hoon]
+D (19:58:00) [%parsing /common/table/verifier/memory.hoon]
+I (19:58:00) [%parse-cache-hit /common/table/verifier/memory.hoon]
+D (19:58:00) [%parsed /common/table/verifier/memory.hoon]
+D (19:58:00) [%resolved /common/table/verifier/memory.hoon]
+D (19:58:00) [%parsing /common/ztd/six.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/six.hoon]
+D (19:58:00) [%parsed /common/ztd/six.hoon]
+D (19:58:00) [%resolved /common/ztd/six.hoon]
+D (19:58:00) [%parsing /common/ztd/five.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/five.hoon]
+D (19:58:00) [%parsed /common/ztd/five.hoon]
+D (19:58:00) [%resolved /common/ztd/five.hoon]
+D (19:58:00) [%parsing /common/ztd/four.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/four.hoon]
+D (19:58:00) [%parsed /common/ztd/four.hoon]
+D (19:58:00) [%resolved /common/ztd/four.hoon]
+D (19:58:00) [%parsing /common/ztd/three.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/three.hoon]
+D (19:58:00) [%parsed /common/ztd/three.hoon]
+D (19:58:00) [%resolved /common/ztd/three.hoon]
+D (19:58:00) [%parsing /common/ztd/two.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/two.hoon]
+D (19:58:00) [%parsed /common/ztd/two.hoon]
+D (19:58:00) [%resolved /common/ztd/two.hoon]
+D (19:58:00) [%parsing /common/ztd/one.hoon]
+I (19:58:00) [%parse-cache-hit /common/ztd/one.hoon]
+D (19:58:00) [%parsed /common/ztd/one.hoon]
+D (19:58:00) [%resolved /common/ztd/one.hoon]
+D (19:58:00) [%building-merk-dag-for {[i=~.common t=/ztd/one.hoon] [i=~.common t=/ztd/six.hoon] [i=~.common t=/ztd/five.hoon] [i=~.common t=/wrapper.hoon] [i=~.common t=/ztd/four.hoon] [i=~.common t=/markdown/types.hoon] [i=~.common t=/tx-engine.hoon] [i=~.common t=/table/compute.hoon] [i=~.common t=/ztd/two.hoon] [i=~.common t=/nock-common.hoon] [i=~.common t=/stark/prover.hoon] [i=~.common t=/table/verifier/memory.hoon] [i=~.common t=/ztd/eight.hoon] [i=~.common t=/markdown/markdown.hoon] [i=~.Users t=/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon] [i=~.common t=/table/prover/compute.hoon] [i=~.common t=/zoon.hoon] [i=~.common t=/zose.hoon] [i=~.common t=/bip39-english.hoon] [i=~.common t=/ztd/three.hoon] [i=~.common t=/table/prover/memory.hoon] [i=~.common t=/slip10.hoon] [i=~.common t=/table/verifier/compute.hoon] [i=~.common t=/bip39.hoon] [i=~.common t=/schedule.hoon] [i=~.common t=/ztd/seven.hoon] [i=~.common t=/table/memory.hoon] [i=~.apps t=/dumbnet/lib/types.hoon] [i=~.common t=/zeke.hoon]}]
+D (19:58:00) [%compiling-target /Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon]
+W (19:58:00) [%build-cache-hit /common/schedule.hoon]
+W (19:58:00) [%build-cache-miss /common/bip39-english.hoon]
+I (19:59:46) took: 106.18821125s
+W (19:59:46) [%build-cache-miss /common/markdown/types.hoon]
+I (19:59:47) took: 520.03575ms
+W (19:59:47) [%build-cache-hit /common/wrapper.hoon]
+W (19:59:47) [%build-cache-hit /common/ztd/one.hoon]
+W (19:59:47) [%build-cache-miss /common/markdown/markdown.hoon]
+W (19:59:47) [%grabbing-dep /common/markdown/types.hoon]
+W (19:59:47) [%attaching-face [~ %m]]
+I (20:00:16) took: 28.851959083s
+W (20:00:16) [%build-cache-hit /common/ztd/two.hoon]
+W (20:00:16) [%build-cache-hit /common/ztd/three.hoon]
+W (20:00:16) [%build-cache-hit /common/ztd/four.hoon]
+W (20:00:16) [%build-cache-hit /common/ztd/five.hoon]
+W (20:00:16) [%build-cache-hit /common/ztd/six.hoon]
+W (20:00:16) [%build-cache-hit /common/ztd/seven.hoon]
+W (20:00:16) [%build-cache-hit /common/ztd/eight.hoon]
+W (20:00:16) [%build-cache-hit /common/zeke.hoon]
+W (20:00:16) [%build-cache-hit /common/table/memory.hoon]
+W (20:00:16) [%build-cache-miss /common/zose.hoon]
+W (20:00:16) [%grabbing-dep /common/zeke.hoon]
+W (20:00:16) [%attaching-face [~ %zeke]]
+I (20:00:30) took: 13.773387541s
+W (20:00:30) [%build-cache-hit /common/zoon.hoon]
+W (20:00:30) [%build-cache-hit /common/table/compute.hoon]
+W (20:00:30) [%build-cache-miss /common/bip39.hoon]
+W (20:00:30) [%grabbing-dep /common/bip39-english.hoon]
+W (20:00:30) [%attaching-face [~ %bip39-english]]
+W (20:00:30) [%grabbing-dep /common/zose.hoon]
+W (20:00:30) [%attaching-face ~]
+I (20:00:31) took: 894.560208ms
+W (20:00:31) [%build-cache-hit /common/table/verifier/compute.hoon]
+W (20:00:31) [%build-cache-miss /common/slip10.hoon]
+W (20:00:31) [%grabbing-dep /common/zose.hoon]
+W (20:00:31) [%attaching-face ~]
+W (20:00:31) [%grabbing-dep /common/zeke.hoon]
+W (20:00:31) [%attaching-face ~]
+I (20:00:31) took: 956.320125ms
+W (20:00:31) [%build-cache-hit /common/table/verifier/memory.hoon]
+W (20:00:31) [%build-cache-hit /common/table/prover/memory.hoon]
+W (20:00:31) [%build-cache-hit /common/table/prover/compute.hoon]
+W (20:00:31) [%build-cache-hit /common/nock-common.hoon]
+W (20:00:31) [%build-cache-hit /common/stark/prover.hoon]
+W (20:00:31) [%build-cache-hit /common/tx-engine.hoon]
+W (20:00:31) [%build-cache-hit /apps/dumbnet/lib/types.hoon]
+W (20:00:31) [%build-cache-miss /Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon]
+W (20:00:32) [%grabbing-dep /common/bip39.hoon]
+W (20:00:32) [%attaching-face [~ %bip39]]
+W (20:00:32) [%grabbing-dep /common/slip10.hoon]
+W (20:00:32) [%attaching-face [~ %slip10]]
+W (20:00:32) [%grabbing-dep /common/markdown/types.hoon]
+W (20:00:32) [%attaching-face [~ %m]]
+W (20:00:32) [%grabbing-dep /common/markdown/markdown.hoon]
+W (20:00:32) [%attaching-face [~ %md]]
+W (20:00:32) [%grabbing-dep /common/tx-engine.hoon]
+W (20:00:32) [%attaching-face [~ %transact]]
+W (20:00:32) [%grabbing-dep /common/zeke.hoon]
+W (20:00:32) [%attaching-face [~ %z]]
+W (20:00:32) [%grabbing-dep /common/zoon.hoon]
+W (20:00:32) [%attaching-face [~ %zo]]
+W (20:00:32) [%grabbing-dep /apps/dumbnet/lib/types.hoon]
+W (20:00:32) [%attaching-face [~ %dumb]]
+W (20:00:32) [%grabbing-dep /common/zose.hoon]
+W (20:00:32) [%attaching-face ~]
+W (20:00:32) [%grabbing-dep /common/wrapper.hoon]
+W (20:00:32) [%attaching-face ~]
+I (20:02:14) took: 102.354714416s
+W (20:02:14) [%build-cache-hit /Users/lichm1/work/nockchain/hoon/apps/wallet/wallet.hoon]
+T (20:02:14) "choo: build succeeded, sending out write effect"
+D (20:02:14) [cr] nockapp::driver: Waiting for recv on next effect
+D (20:02:14) [cr] drivers::one_punch: Poke successful
+D (20:02:14) [cr] drivers::file: file driver: writing 3318856 bytes to: /Users/lichm1/work/nockchain/out.jam
+D (20:02:14) [cr] nockapp::driver: Waiting for recv on next effect
+T (20:02:15) nockapp: Action channel received
+T (20:02:15) nockapp: Write to "/Users/lichm1/.nockapp/choo/checkpoints/0.chkjam" successful, checksum: 87a422fa65e0a6a43a42342549b19de1eef88f89929fe1744aec6439e103acc0, event: 8
+I (20:02:15) %file
+W (20:02:15) "choo: output written successfully to '/Users/lichm1/work/nockchain/out.jam'"
+D (20:02:15) [cr] nockapp::driver: Waiting for recv on next effect
+D (20:02:15) [cr] nockapp::driver: Waiting for recv on next effect
+D (20:02:15) [cr] nockapp::driver: Waiting for recv on next effect
+D (20:02:15) nockapp: Exit signal received
+D (20:02:15) nockapp: Exit request received, waiting for save checkpoint with event_num 9 (code 0)
+T (20:02:15) nockapp: Write to "/Users/lichm1/.nockapp/choo/checkpoints/1.chkjam" successful, checksum: 795de0d8a4f0ab22e8e107e638a19db10da15b7a5b83ab2a053935f33346ceb1, event: 9
+D (20:02:15) nockapp: Save event_num reached, finishing with code 0
+D (20:02:15) nockapp: Sending shutdown result
+D (20:02:15) nockapp: Shutdown channel received
+D (20:02:15) nockapp: Shutdown triggered, exiting
+D (20:02:15) nockapp: Awaiting serf stop
+D (20:02:15) [cr] kernel::form: Serf finished
+D (20:02:15) nockapp: Joining serf thread
+D (20:02:15) nockapp: Serf thread joined
+no panic!
+mv out.jam assets/wal.jam
