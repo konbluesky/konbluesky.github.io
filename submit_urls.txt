@@ -1,3 +1,4 @@
+https://konbluesky.github.io/zh-CN/tab-key-debugging-case-study/
 https://konbluesky.github.io/zh-CN/comfy_learn/
 https://konbluesky.github.io/zh-CN/hexo_add_seo_push_feature/
 https://konbluesky.github.io/zh-CN/python_networkx/
@@ -7,4 +8,3 @@ https://konbluesky.github.io/zh-CN/python_py_spy/
 https://konbluesky.github.io/zh-CN/freebie_hunting_bera_chain/
 https://konbluesky.github.io/zh-CN/jetcache-integration/
 https://konbluesky.github.io/zh-CN/ic_hello/
-https://konbluesky.github.io/zh-CN/about_2FA/
