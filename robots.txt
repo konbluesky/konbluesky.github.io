@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://konblueslky.github.io/sitemap.xml

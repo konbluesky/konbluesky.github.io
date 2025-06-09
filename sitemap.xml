@@ -366,14 +366,14 @@
   </url>
   
   <url>
-    <loc>https://konbluesky.github.io/tags/miniconda/</loc>
+    <loc>https://konbluesky.github.io/tags/ComfyUI/</loc>
     <lastmod>2025-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://konbluesky.github.io/tags/ComfyUI/</loc>
+    <loc>https://konbluesky.github.io/tags/miniconda/</loc>
     <lastmod>2025-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -436,6 +436,13 @@
   </url>
   
   <url>
+    <loc>https://konbluesky.github.io/tags/Jetcache/</loc>
+    <lastmod>2025-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://konbluesky.github.io/tags/Internet-Computer/</loc>
     <lastmod>2025-06-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -444,13 +451,6 @@
   
   <url>
     <loc>https://konbluesky.github.io/tags/IC/</loc>
-    <lastmod>2025-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://konbluesky.github.io/tags/Jetcache/</loc>
     <lastmod>2025-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
