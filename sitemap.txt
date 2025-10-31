@@ -34,12 +34,12 @@ https://konbluesky.github.io/zh-CN/carry_coin_log_cleanup/
 https://konbluesky.github.io/zh-CN/zsh_add_conda_env_name/
 https://konbluesky.github.io/zh-CN/conda_mark/
 https://konbluesky.github.io/
+https://konbluesky.github.io/tags/python/
 https://konbluesky.github.io/tags/Java/
 https://konbluesky.github.io/tags/Python/
 https://konbluesky.github.io/tags/Architecture/
 https://konbluesky.github.io/tags/jasypt/
 https://konbluesky.github.io/tags/SpringBoot/
-https://konbluesky.github.io/tags/python/
 https://konbluesky.github.io/tags/%E6%97%A5%E5%BF%97%E6%B8%85%E7%90%86/
 https://konbluesky.github.io/tags/miniconda/
 https://konbluesky.github.io/tags/ComfyUI/
